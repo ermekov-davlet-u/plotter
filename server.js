@@ -3,12 +3,13 @@ import cors from "cors";
 import fs from "fs";
 import path from "path";
 import net from "net";
+import { autoFixHPGL, analyzeHPGL, needsFix, findMicroFeatures, parseHPGL } from "./hpglFix.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = 3000;
+const PORT = 5000;
 
 // -------------------------
 // НАСТРОЙКИ ПЛОТТЕРА
@@ -16,6 +17,19 @@ const PORT = 3000;
 const PLOTTER_IP = "192.168.31.31"; // <-- ВСТАВЬ IP плоттера
 const PLOTTER_PORT = 9100;
 
+// Папка, где лежат все .plt файлы, которые нужно проверять/чинить пачками
+const PLT_DIR = path.resolve("plt_files");
+
+// Допуск упрощения в единицах HPGL (1 ед. = 0.025мм). Чем больше — тем агрессивнее чистка.
+// 2 единицы = макс. отклонение 0.05мм — ниже точности самого блейда/плоттера,
+// но этого достаточно, чтобы полностью убрать микро-сегменты на ваших файлах.
+const SIMPLIFY_TOLERANCE = 2;
+
+// Удалять ли крошечные петли/круги (<0.75мм) прямо из контура.
+// Включай, только если уверен, что в дизайнах нет специально задуманных
+// отверстий меньше миллиметра — иначе можно случайно стереть нужную деталь.
+const REMOVE_MICRO_FEATURES = false;
+const MICRO_FEATURE_MAX_SIZE = 30; // единиц HPGL = 0.75мм
 
 function epsToHpgl(filePath) {
   const eps = fs.readFileSync(filePath, "utf-8");
@@ -55,6 +69,59 @@ function epsToHpgl(filePath) {
 
   return hpgl;
 }
+
+// -------------------------
+// Авто-починка перед резкой
+// -------------------------
+// Читает .plt файл, проверяет на "дрожь" (много микро-сегментов),
+// при необходимости упрощает контуры алгоритмом Дугласа-Пекера.
+// Если файл правился — сохраняет рядом версию "_fixed.plt" для истории.
+function prepareForCutting(filePath, opts = {}) {
+  const raw = fs.readFileSync(filePath, "utf-8");
+
+  const { hpgl, wasFixed, before, after, microFeaturesRemoved } = autoFixHPGL(raw, {
+    tolerance: SIMPLIFY_TOLERANCE,
+    removeMicroFeatures: opts.removeMicroFeatures ?? REMOVE_MICRO_FEATURES,
+    maxFeatureSize: MICRO_FEATURE_MAX_SIZE,
+  });
+
+  if (!wasFixed) {
+    console.log(`✅ ${path.basename(filePath)}: файл чистый, починка не нужна (точек: ${before.totalPoints})`);
+    return raw;
+  }
+
+  console.log(
+    `🔧 ${path.basename(filePath)}: обнаружена "дрожь", чиню — ` +
+      `точек ${before.totalPoints} → ${after.totalPoints}, ` +
+      `микро-сегментов ${(before.tinyRatio * 100).toFixed(1)}% → ${(after.tinyRatio * 100).toFixed(1)}%`
+  );
+
+  if (microFeaturesRemoved && microFeaturesRemoved.length) {
+    console.log(`   🔻 удалено крошечных деталей (вероятно, маленькие круги): ${microFeaturesRemoved.length}`);
+    microFeaturesRemoved.forEach((f, idx) =>
+      console.log(`      #${idx + 1}: ${f.bboxMm.w}x${f.bboxMm.h} мм, точек было: ${f.pointCount}`)
+    );
+  } else if (!opts.removeMicroFeatures && !REMOVE_MICRO_FEATURES) {
+    // если такие детали есть, но удаление выключено — хотя бы предупредим
+    const items = parseHPGL(raw);
+    const mainPath = items.find((i) => i.type === "path" && i.points.length > 20);
+    if (mainPath) {
+      const found = findMicroFeatures([mainPath.start, ...mainPath.points], { maxFeatureSize: MICRO_FEATURE_MAX_SIZE });
+      if (found.length) {
+        console.log(
+          `   ⚠️  найдено ${found.length} крошечных деталей (<0.75мм) — вероятно, это и трясёт. ` +
+            `Чтобы их вырезать, отправь removeMicroFeatures=true`
+        );
+      }
+    }
+  }
+
+  const fixedPath = filePath.replace(/\.plt$/i, "") + "_fixed.plt";
+  fs.writeFileSync(fixedPath, hpgl, "utf-8");
+
+  return hpgl;
+}
+
 // -------------------------
 // Очередь задач (чтобы не ломать плоттер)
 // -------------------------
@@ -87,7 +154,7 @@ function sendToPlotter(data) {
   return new Promise((resolve, reject) => {
     const client = new net.Socket();
 
-    client.connect(9100, PLOTTER_IP, () => {
+    client.connect(PLOTTER_PORT, PLOTTER_IP, () => {
       console.log("🔌 Подключено к плоттеру");
 
       client.write(data);
@@ -110,44 +177,24 @@ function sendToPlotter(data) {
   });
 }
 
-// -------------------------
-// ТЕСТ РЕЗКИ
-// -------------------------
 app.get("/test", (req, res) => {
-  const hpgl = `
-    IN;
-SP1;
-PU;
+  try {
+    const filePath = path.resolve("phone12.plt");
 
-PA500,500;
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ error: "phone12.plt не найден" });
+    }
 
-; круг (аппроксимация)
-PD500,900;
-PD650,880;
-PD780,780;
-PD880,650;
-PD900,500;
-PD880,350;
-PD780,220;
-PD650,120;
-PD500,100;
-PD350,120;
-PD220,220;
-PD120,350;
-PD100,500;
-PD120,650;
-PD220,780;
-PD350,880;
-PD500,900;
+    const data = prepareForCutting(filePath);
 
-PU;
-SP0;
-    `;
+    queue.push({ data });
+    processQueue();
 
-  queue.push({ data: hpgl });
-  processQueue();
-
-  res.json({ message: "Тестовая резка отправлена" });
+    res.json({ message: "Тестовая резка из файла отправлена" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 app.get("/cut-eps", (req, res) => {
@@ -159,18 +206,24 @@ app.get("/cut-eps", (req, res) => {
     }
 
     // 1. конвертация EPS → HPGL
-    const hpgl = epsToHpgl(filePath);
+    let hpgl = epsToHpgl(filePath);
 
-    // 2. отправка в очередь
+    // 2. чиним, если получилось "дрожащее" (autotrace часто этим грешит)
+    const fixResult = autoFixHPGL(hpgl, { tolerance: SIMPLIFY_TOLERANCE });
+    if (fixResult.wasFixed) {
+      console.log(
+        `🔧 EPS после конвертации был "дрожащим", починил: ` +
+          `${fixResult.before.totalPoints} → ${fixResult.after.totalPoints} точек`
+      );
+      hpgl = fixResult.hpgl;
+    }
+
     console.log(hpgl);
-    
+
     queue.push({ data: hpgl });
     processQueue();
 
-    res.json({
-      message: "EPS конвертирован и отправлен на резку"
-    });
-
+    res.json({ message: "EPS конвертирован, проверен и отправлен на резку" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
@@ -178,8 +231,6 @@ app.get("/cut-eps", (req, res) => {
 });
 
 app.get("/connect", (req, res) => {
-  
-
   function testPort(port) {
     const socket = new net.Socket();
 
@@ -190,18 +241,19 @@ app.get("/connect", (req, res) => {
       socket.destroy();
     });
 
-    socket.on("error", () => { });
+    socket.on("error", () => {});
     socket.on("timeout", () => socket.destroy());
   }
 
   [9100, 515, 631].forEach(testPort);
+  res.json({ message: "Проверка портов запущена, смотри консоль" });
 });
 
 // -------------------------
-// РЕЗКА ФАЙЛА (.plt / HPGL)
+// РЕЗКА ОДНОГО ФАЙЛА (.plt / HPGL) — с авто-починкой
 // -------------------------
 app.post("/cut", (req, res) => {
-  const { filePath } = req.body;
+  const { filePath, removeMicroFeatures } = req.body;
 
   if (!filePath) {
     return res.status(400).json({ error: "Не указан filePath" });
@@ -214,12 +266,102 @@ app.post("/cut", (req, res) => {
       return res.status(404).json({ error: "Файл не найден" });
     }
 
-    const data = fs.readFileSync(fullPath, "utf-8");
+    const data = prepareForCutting(fullPath, { removeMicroFeatures });
 
     queue.push({ data });
     processQueue();
 
-    res.json({ message: "Файл добавлен в очередь" });
+    res.json({ message: "Файл проверен, при необходимости починен и добавлен в очередь" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// -------------------------
+// ПРОВЕРКА ОДНОГО ФАЙЛА БЕЗ ОТПРАВКИ — посмотреть диагностику
+// -------------------------
+app.get("/check", (req, res) => {
+  const { filePath } = req.query;
+
+  if (!filePath) {
+    return res.status(400).json({ error: "Укажи ?filePath=..." });
+  }
+
+  try {
+    const fullPath = path.resolve(filePath);
+    if (!fs.existsSync(fullPath)) {
+      return res.status(404).json({ error: "Файл не найден" });
+    }
+
+    const raw = fs.readFileSync(fullPath, "utf-8");
+    const stat = analyzeHPGL(raw);
+
+    const items = parseHPGL(raw);
+    let microFeatures = [];
+    for (const item of items) {
+      if (item.type !== "path") continue;
+      const all = [item.start, ...item.points];
+      microFeatures = microFeatures.concat(
+        findMicroFeatures(all, { maxFeatureSize: MICRO_FEATURE_MAX_SIZE })
+      );
+    }
+
+    res.json({
+      file: path.basename(fullPath),
+      needsFix: needsFix(raw),
+      ...stat,
+      tinyRatioPercent: (stat.tinyRatio * 100).toFixed(1) + "%",
+      microFeaturesFound: microFeatures.length,
+      microFeatures: microFeatures.map((f) => ({ sizeMm: f.bboxMm, pointCount: f.pointCount })),
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// -------------------------
+// ПАКЕТНАЯ ПРОВЕРКА/ПОЧИНКА ВСЕХ ФАЙЛОВ В ПАПКЕ
+// Кладёшь все .plt файлы в папку plt_files/ рядом с сервером,
+// дёргаешь GET /fix-all — получаешь отчёт, "дрожащие" файлы
+// автоматически получают рядом версию *_fixed.plt
+// -------------------------
+app.get("/fix-all", (req, res) => {
+  try {
+    if (!fs.existsSync(PLT_DIR)) {
+      return res.status(404).json({ error: `Папка ${PLT_DIR} не найдена. Создай её и положи туда .plt файлы` });
+    }
+
+    const files = fs
+      .readdirSync(PLT_DIR)
+      .filter((f) => f.toLowerCase().endsWith(".plt") && !f.toLowerCase().endsWith("_fixed.plt"));
+
+    const report = files.map((fileName) => {
+      const fullPath = path.join(PLT_DIR, fileName);
+      const raw = fs.readFileSync(fullPath, "utf-8");
+      const before = analyzeHPGL(raw);
+      const fix = autoFixHPGL(raw, { tolerance: SIMPLIFY_TOLERANCE });
+
+      if (fix.wasFixed) {
+        const fixedPath = fullPath.replace(/\.plt$/i, "") + "_fixed.plt";
+        fs.writeFileSync(fixedPath, fix.hpgl, "utf-8");
+      }
+
+      return {
+        file: fileName,
+        wasFixed: fix.wasFixed,
+        pointsBefore: before.totalPoints,
+        pointsAfter: fix.wasFixed ? fix.after.totalPoints : before.totalPoints,
+        tinyRatioBefore: (before.tinyRatio * 100).toFixed(1) + "%",
+        tinyRatioAfter: fix.wasFixed ? (fix.after.tinyRatio * 100).toFixed(1) + "%" : (before.tinyRatio * 100).toFixed(1) + "%",
+      };
+    });
+
+    res.json({
+      checked: files.length,
+      fixed: report.filter((r) => r.wasFixed).length,
+      report,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });

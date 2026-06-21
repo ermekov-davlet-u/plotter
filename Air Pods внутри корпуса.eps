@@ -1,0 +1,4514 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 243 595 361 703 
+%%LanguageLevel: 2
+%%Creator: CorelDRAW
+%%Title: Air Pods внутри корпуса.eps
+%%CreationDate: Mon Aug 12 11:10:03 2019
+%%DocumentProcessColors: Magenta Yellow Black 
+%%DocumentSuppliedResources: (atend)
+%%EndComments
+%%BeginProlog
+/AutoFlatness false def
+/AutoSteps 0 def
+/CMYKMarks true def
+/DocPsLevel 2 def
+%Build: CorelDRAW Версия 21.2.0.708
+/EpsFile true def
+%%BeginResource: procset wCorel21Dict 21.0 0
+/wCorel21Dict 300 dict def wCorel21Dict begin
+%----------------------------------------------------------------------------
+% Core Corel PostScript prolog functions
+%----------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------
+% Reduced syntax procedures
+%----------------------------------------------------------------------------
+
+/bd {bind def} bind def      				% bind proc names to current proc reference in the dict and define
+/ld {load def} bd            				% load operator and define
+/xd {exch def} bd            				% exchange operators on stack and define
+/rp { {pop} repeat } bd      				% pop entries off stack iNumToPop rp
+/dexec { exch begin cvx exec end } bd	% executes procedure from the dictionary on stack
+/@cp /closepath ld
+/@gs /gsave ld
+/@gr /grestore ld
+/@np /newpath ld
+/Tl /translate ld
+/$sv 0 def                   				% graphic state save snapshots
+/@sv {/$sv save def}bd
+/@rs {$sv restore}bd
+
+/spg /showpage ld
+/showpage {} bd
+
+currentscreen                	% establish document's default halftone screen
+/@dsp xd                     	% default spot func
+/$dsp /@dsp def              	% default spot func name
+/$dsa xd                     	% default screen angle
+/$dsf xd                     	% default screen frequency function
+/$sdf false def              	% FLAG: non-default screen for fill (true)
+/$SDF false def              	% FLAG: non-default screen for stroke (true)
+/$Scra 0 def                 	% screen adjustment (-90 if printing landscape)
+
+/SetScr /setscreen ld					% sub in out own setscreen operator
+
+/@ss                         	% Set Screen angle account for adjustment
+{                            	% frequency angle proc
+ 2 index 0 eq
+ {
+  $dsf 3 1 roll              	% frequency angle proc deffreq
+  4 -1 roll pop              	%
+ } if                        	%
+ exch $Scra add exch load    	% frequency angle+$Scra {proc}
+ SetScr                   		%
+} bd                         	%
+
+/SeparationMode where					% init separatin mode
+{ pop }{ /SeparationMode /Composite def } ifelse
+
+/SeparationPlateName where		% init separation plate name
+{ pop }{ /SeparationPlateName null def } ifelse
+
+/SeparateInColor where				% init separtion in color flag
+{ pop }{ /SeparateInColor false def	} ifelse
+
+
+/EpsFile where								% are we an EPS file
+{pop}
+{/EpsFile false def} ifelse
+
+/FillOverprint false def    % Fill overprint flag
+/$fil 0 def                 % Fill type: 0:solid 1:pattern 2:fountain 3:PS 4:fountain shfill
+
+/OutlineOverprint 0 def     % Outline overprint flag
+/$PF false def              % pattern stroke flag(0 no pattern, 1 pattern)
+
+/$bkg false def             % imaging background only flag
+/CurrentOverprint false def % overprint flag
+
+matrix currentmatrix        % establish current matrix
+/$ctm xd                    % initial general transfo matrix
+
+/$ptm matrix def            % pen stroking matrix(defaults identity)
+/$ttm matrix def            % text transfo matrix(Corel extensions)
+/$stm matrix def            % "save" matrix in extended text(Corel extensions)
+
+/$ffpnt true def						% flag for painting fountain strips (overprint prob)
+
+%----------------------------------------------------------------------------
+% Corel re-encoding vector
+%----------------------------------------------------------------------------
+/CorelDrawReencodeVect [
+16#0/grave 16#5/breve 16#6/dotaccent 16#8/ring 16#A/hungarumlaut 16#B/ogonek 16#C/caron
+16#D/dotlessi 16#27/quotesingle 16#60/grave 16#7C/bar 16#80/Euro
+16#82/quotesinglbase/florin/quotedblbase/ellipsis/dagger/daggerdbl
+16#88/circumflex/perthousand/Scaron/guilsinglleft/OE
+16#91/quoteleft/quoteright/quotedblleft/quotedblright/bullet/endash/emdash
+16#98/tilde/trademark/scaron/guilsinglright/oe
+16#9F/Ydieresis
+16#A1/exclamdown/cent/sterling/currency/yen/brokenbar/section
+16#a8/dieresis/copyright/ordfeminine/guillemotleft/logicalnot/minus/registered/macron
+16#b0/degree/plusminus/twosuperior/threesuperior/acute/mu/paragraph/periodcentered
+16#b8/cedilla/onesuperior/ordmasculine/guillemotright/onequarter/onehalf/threequarters/questiondown
+16#c0/Agrave/Aacute/Acircumflex/Atilde/Adieresis/Aring/AE/Ccedilla
+16#c8/Egrave/Eacute/Ecircumflex/Edieresis/Igrave/Iacute/Icircumflex/Idieresis
+16#d0/Eth/Ntilde/Ograve/Oacute/Ocircumflex/Otilde/Odieresis/multiply
+16#d8/Oslash/Ugrave/Uacute/Ucircumflex/Udieresis/Yacute/Thorn/germandbls
+16#e0/agrave/aacute/acircumflex/atilde/adieresis/aring/ae/ccedilla
+16#e8/egrave/eacute/ecircumflex/edieresis/igrave/iacute/icircumflex/idieresis
+16#f0/eth/ntilde/ograve/oacute/ocircumflex/otilde/odieresis/divide
+16#f8/oslash/ugrave/uacute/ucircumflex/udieresis/yacute/thorn/ydieresis
+] def
+
+%----------------------------------------------------------------------------
+% Proc:  get_ps_level
+% Stack: get_ps_level pslevel
+% Desc:  returns level of PS interpreter environemnt
+%----------------------------------------------------------------------------
+/get_ps_level
+	/languagelevel where
+	{
+		pop systemdict /languagelevel get exec
+	}
+	{
+		1
+	} ifelse
+def
+
+%----------------------------------------------------------------------------
+% Level 2 or 3 flag
+%----------------------------------------------------------------------------
+/Level2 get_ps_level 2 ge def
+
+%----------------------------------------------------------------------------
+% Level 3 flag
+%----------------------------------------------------------------------------
+/Level3 get_ps_level 3 ge def
+
+%----------------------------------------------------------------------------
+% Flag to indicate we are processed by AdobeDistiller
+%----------------------------------------------------------------------------
+/AdobeDistiller
+  /product where
+  {
+    pop systemdict/setdistillerparams known product (Adobe PostScript Parser) ne and
+  }
+  {
+    false
+  }ifelse
+def
+
+%----------------------------------------------------------------------------
+% Flag to indicate we are are being separated in-RIP (not by Distiller!)
+%----------------------------------------------------------------------------
+/InRipSeparation
+  AdobeDistiller
+  {
+    false										% we are being distilled by Adobe Distiller, not RIP
+  }
+  {
+    Level2									% in-RIP separations allowed for Level2 and higher
+    {
+      currentpagedevice/Separations 2 copy known		% check currentpage dict - Separations should be set true
+      {
+        get
+      }
+      {
+        pop pop false
+      }ifelse
+    }
+    {
+     false
+    }ifelse
+  }	ifelse
+def
+
+%----------------------------------------------------------------------------
+% Flag to indicate we are being separated through overloaded
+% setcmykcolor/currentcmykcolor operators, Level 1 style
+%----------------------------------------------------------------------------
+/ColorSeparationLevel1
+
+	% try to set pure Cyan, Magenta, Yellow and Black colors and see whether system knock one of the colors
+
+	1 0 0 0 gsave setcmykcolor currentcmykcolor grestore add add add 0 ne
+	0 1 0 0 gsave setcmykcolor currentcmykcolor grestore add add add 0 ne
+	0 0 1 0 gsave setcmykcolor currentcmykcolor grestore add add add 0 ne
+	0 0 0 1 gsave setcmykcolor currentcmykcolor grestore add add add 0 ne
+	and and and not
+def
+
+%----------------------------------------------------------------------------
+% Flag to indicate we are being separated (does not matter by which method)
+%----------------------------------------------------------------------------
+/ColorSeparation
+  /LumSepsDict where            % see if we're being separated by TrapWise or PressWise
+  {
+    pop                         % lose the dictionary
+    false                       % return false
+  }
+  {
+    /AldusSepsDict where        % they might also use this one (Mac vs. PC?)
+    {
+      pop                       % lose the dictionary
+      false                     % return false
+    }
+    {                           % we're not being separated by TrapWise or PressWise, use a generic method
+      InRipSeparation						% is in-RIP (Level2 style) separation
+      {
+        true
+      }
+      {
+        % is Level 1 style separation, through overloaded setcmykcolor currentcmykcolor operators
+		ColorSeparationLevel1
+      }ifelse
+    }ifelse
+  }ifelse
+def
+
+%----------------------------------------------------------------------------
+% Flag to indicate that PS device has color capabilities
+%----------------------------------------------------------------------------
+/IsColorDevice
+	/deviceinfo where
+	{
+		pop deviceinfo /Colors known
+		{
+			deviceinfo /Colors get exec 1 gt
+		}
+		{
+			false
+		}ifelse
+	}
+	{
+		/statusdict where
+		{
+			pop statusdict /processcolors known
+			{
+				statusdict /processcolors get exec 1 gt
+			}
+			{
+				false
+			}ifelse
+		}
+		{
+			false
+		}ifelse
+	} ifelse
+def
+
+%----------------------------------------------------------------------------
+% Proc:		get_simulate_devicen
+% Stack:	--> get_simulate_devicen --> bool
+%					bool true - smiluate DeviceN through overprinting on Level 2
+% Desc:		determines if we should simulate DeviceN colors through overprints thus
+%					preserving spot colors on Level 2 devices in composite mode
+%----------------------------------------------------------------------------
+/get_simulate_devicen
+  get_ps_level 2 eq							% we simulate DeviceN only on Level2
+  {
+    {
+			SeparationMode /OnHost ne								% no DeviceN simulation for on-host separations mode
+			InRipSeparation AdobeDistiller or and		% do it for in-RIP separation or distilling
+    } bind
+  }
+  {
+    false
+  }ifelse
+def
+
+%----------------------------------------------------------------------------
+%
+%	Color objects definition section
+%
+%----------------------------------------------------------------------------
+
+% Default document colorspaces
+/DocGrayScaleSpace [/DeviceGray] def
+/DocRgbSpace [/DeviceRGB] def
+/DocCmykSpace [/DeviceCMYK] def
+
+/DocLabSpace
+[
+	/CIEBasedABC
+	<<
+	/BlackPoint [0 0 0]
+	/WhitePoint [ 0.9637  1.0000  0.8241 ]
+	/RangeABC [0 100 -128 127 -128 127]
+	/DecodeABC [{16 add 116 div} bind {500 div} bind {200 div} bind]
+	/MatrixABC [1 1 1 1 0 0 0 0 -1]
+	/DecodeLMN
+	[
+		{dup 0.206897 ge{dup dup mul mul}{0.137931 sub 0.128419 mul} ifelse  0.9637 mul }bind 
+		{dup 0.206897 ge{dup dup mul mul}{0.137931 sub 0.128419 mul} ifelse  1.0000 mul }bind 
+		{dup 0.206897 ge{dup dup mul mul}{0.137931 sub 0.128419 mul} ifelse  0.8241 mul }bind 
+	]
+	>>
+] def
+
+%----------------------------------------------------------------------------
+% Proc:		validate_cie_colorspace_whitepoint
+% Stack: 	colorspacedict --> validate_cie_colorspace_whitepoint --> colorspacedict
+% Desc: 	validates CIE colorspace white point, the Yw parameter must be 1.0
+%----------------------------------------------------------------------------
+/validate_cie_colorspace_whitepoint
+{
+	load dup aload pop
+	/WhitePoint get
+	1 1.0 put pop
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		set_cie_colorspaces
+% Stack: 	none
+% Desc: 	sets document color spaces to the CIE CSA, if exist
+%----------------------------------------------------------------------------
+/set_cie_colorspaces
+{
+	/DocGrayScaleSpaceCIE where
+	{
+		pop
+		/DocGrayScaleSpaceCIE validate_cie_colorspace_whitepoint /DocGrayScaleSpace xd
+		
+		% modify CIEBasedA definition for /DecodeA key written by ICM
+		% it is an array while should be a procedure, PS interpreters will fail otherwise
+		DocGrayScaleSpace aload pop
+		begin pop
+			/DecodeA where
+			{
+				pop
+				DecodeA type /arraytype eq
+				{
+					DecodeA aload pop
+					/DecodeA exch def			
+				}if
+			}if
+		end
+	}if
+
+	/DocRgbSpaceCIE where
+	{	
+		pop
+		/DocRgbSpaceCIE validate_cie_colorspace_whitepoint /DocRgbSpace xd
+	}if
+
+	/DocCmykSpaceCIE where
+	{
+		pop
+		/DocCmykSpaceCIE validate_cie_colorspace_whitepoint /DocCmykSpace xd
+	}if
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		set_rendering_intent
+% Stack: 	rendering_intent set_rendering_intent
+%			rendering_intent - either /Perceptual, /AbsoluteColorimetric,
+%			/RelativeColormetric or /Saturation
+% Desc: 	sets prefered rendring intent to use in CRD on device
+%----------------------------------------------------------------------------
+/set_rendering_intent
+{
+	Level3
+	{
+		findcolorrendering
+		{
+			% CRD found for requested rendering intent and device settings
+			/ColorRendering findresource setcolorrendering 
+		}
+		{
+			% CRD not found for requested rendering intent
+			dup /DefaultColorRendering eq
+			{ 
+				pop
+			}
+			{
+				/ColorRendering findresource setcolorrendering 
+			}
+		}ifelse 
+	}
+	{
+		pop
+	}ifelse
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:	findcmykcustomcolor
+% Stack: 	c m y k name --> findcmykcustomcolor --> array
+%				c - cyan color component
+%				m - magenta color component
+%				y - yellow color component
+%				k - black color component
+%				(name) - spot color name
+% Desc: 	finds spot color object defined by the name, if no fyndcmykcutomcolor
+%				is defined on the system  just stores alternative CMYK values and name
+%				in the array to be used by setcustomcolor procedure
+%----------------------------------------------------------------------------
+/findcmykcustomcolor where
+{
+  pop
+}
+{
+  /findcmykcustomcolor
+  {
+    5 array astore
+  } def
+} ifelse
+
+%----------------------------------------------------------------------------
+% Proc:	setcustomcolor
+% Stack: 	array tint --> setcustomcolor
+%				array - color array returned by findcmykcustomcolor
+%				tint - color component value
+% Desc: 	sets custom ink ( spot ) color or its alternative CMYK representation
+%				if spot color is not available on the system (printer/RIP)
+%----------------------------------------------------------------------------
+/setcustomcolor where
+SeparationMode /OnHost ne and
+{
+  pop
+}
+{
+	%----------------------------------------------------------------------------
+	% Stack: 	tint cyan magenta yellow black tint_cmyk_color cyan1 magenta1 yellow1 black1
+	% Desc: 	tint color
+	%----------------------------------------------------------------------------
+	/tint_cmyk_color
+	{
+		 5 -1 roll
+		 dup 1 ge                    	% see if tint >= 1
+		 {pop}                       	% if it is, pop it
+		 {                           	% otherwise, multiply all 4 components
+			4
+			{
+				dup                   	% duplicate the tint
+				6 -1 roll              	% get next component
+				mul                    	% multiply with current tint
+				exch                    % tint back on top
+			}repeat
+			pop                        	% no need for tint anymore
+		 } ifelse
+	} bd  
+  
+	%----------------------------------------------------------------------------
+	% Stack: 	c m y k setprocesscolor_5 -
+	% Desc: 	sets process color without doing any separations
+	%			we assume color has been preseparated
+	%----------------------------------------------------------------------------
+	/setprocesscolor_5
+	{
+		SepMode_5 0 eq              % Check if not performing color seps.
+		{
+			SetCmyk_5               % set CMYK color
+		}
+		{
+			SepsColor not         	% separating in grayscale
+   			{
+				4 1 roll pop pop pop	% leave just K component on stack
+				1 exch sub SetGry		%	set gray component		
+			}
+			{
+				SetCmyk_5               % set CMYK color for separations in color
+			}ifelse
+		}ifelse
+	} bd	
+  
+	/setcustomcolor
+	{
+  		exch
+    	aload pop
+    	SepMode_5 0 eq
+    	{
+     		pop
+     		tint_cmyk_color
+     		setprocesscolor_5
+    	}
+    	{
+     		CurrentInkName_5 eq
+     		{
+      			4 index
+     		}
+     		{
+      			0
+     		}ifelse
+     		6 1 roll
+     		5 rp
+     		1 sub neg SetGry
+    	}ifelse
+   } bd 
+
+} ifelse
+
+%----------------------------------------------------------------------------
+% Proc:		convert_rgb_to_cmyk
+% Stack: 	r g b ConvDict convert_rgb_to_cmyk c m y k
+%					r - red
+%					g - green
+%					b - blue
+%					ConvDict - conversion dictionary with RGB-CMYK look up table (LUT)
+%					c - cyan
+%					m - magenta
+%					y - yellow
+%					k - black
+% Desc: 	converts rgb color values to cmyk color values using either RGB-to-CMYK
+%					look up table	if supplied, or primitive conversion formulae
+%----------------------------------------------------------------------------
+/convert_rgb_to_cmyk
+{
+ dup type /dicttype eq
+ {
+ }
+ {
+  3                         %
+  {                         % r g b
+    1 exch sub              % r g 1-b       	% y = 1 - b
+    3 1 roll                % y r g
+  } repeat                  % c m y
+  3 copy                    % c m y c m y
+  min min                   % c m y min(c,m,y)     	% K=min(c,m,y)
+  3                         %
+  {                         % c m y K
+    dup 5 -1 roll           % m y K K c
+    sub neg                 % m y K c-K     	% C = c - K
+    exch                    % m y C K
+  } repeat                  % C M Y K
+ } ifelse
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		colorspace safe_setcolorspace
+% Stack: 	colorspace --> safe_setcolorspace -->
+% 				colorspace colorspace to set
+% Desc: 	set colorspace, unless it is already current colorspace
+%----------------------------------------------------------------------------
+/safe_setcolorspace
+{
+  dup
+  currentcolorspace eq
+  {
+    pop
+  }
+  {
+    setcolorspace
+
+  }ifelse
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		safe_setoverprint
+% Stack:	overprintflag safe_setoverprint
+%					overprintflag - boolean or integer
+% Desc:		sets current color performing separations if necessary
+%----------------------------------------------------------------------------
+/safe_setoverprint
+{
+	dup type /booleantype eq			% boolean flag is passed
+  {
+    dup
+    currentoverprint ne
+    {
+			setoverprint
+		}
+    {
+			pop
+		}
+    ifelse
+  }
+  {															% integer flag is passed
+		1 eq setoverprint
+	}
+  ifelse
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		is_cmyk_channel_name
+% Stack: 	channelName --> is_cmyk_channel_name --> bool
+%			channelName - name of the channel
+% Desc: 	determines whether channel name on stack belong to cmyk color
+%----------------------------------------------------------------------------
+/is_cmyk_channel_name
+{
+	/channel_name xd
+
+	channel_name /Cyan eq
+	channel_name /Magenta eq or
+	channel_name /Yellow eq or
+	channel_name /Black eq or
+	{
+		true		
+	}
+	{
+		false
+	}ifelse
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		is_rgb_channel_name
+% Stack: 	channelName --> is_rgb_channel_name --> bool
+%			channelName - name of the channel
+% Desc: 	determines whether channel name on stack belong to RGB color
+%----------------------------------------------------------------------------
+/is_rgb_channel_name
+{
+	/channel_name xd
+
+	channel_name /Red eq
+	channel_name /Green eq or
+	channel_name /Blue eq or
+	{
+		true		
+	}
+	{
+		false
+	}ifelse
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		is_spot_channel_name
+% Stack: 	channelName --> is_spot_channel_name --> bool
+%			channelName - name of the channel
+% Desc: 	determines whether channel name on stack belong to spot color
+%----------------------------------------------------------------------------
+/is_spot_channel_name
+{
+	/channel_name xd
+
+	channel_name is_cmyk_channel_name
+	channel_name is_rgb_channel_name or
+	channel_name /Gray eq or
+	{
+		false		
+	}
+	{
+		true
+	}ifelse
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		spot_tint_transform_proc
+% Stack: 	tint  [ alternativeColors ] alternativeSpace --> spot_tint_transform_proc -- > tinted spot color in alternative color space
+%			alternativeSpace - alternative color space ( e.g. /DocGrayScaleSpace, /DocRgbSpace, /DocCmykSpace )
+%			[ alternative color values ] - spot color values in alternative color space
+%			tint - tint of spot color [ 0.. 1.0]
+% Desc: 	applies tint to spot ink's alternative color space values
+%----------------------------------------------------------------------------
+/spot_tint_transform_proc
+{
+	/alternativeSpace xd
+	/alternativeColors xd
+	/tint xd
+	
+	alternativeSpace DocLabSpace eq
+	{
+		/mixMethod /Additive def
+		/altSpaceNumChannels 3 def
+	}
+	{
+	  alternativeSpace DocCmykSpace eq
+	  {
+		/mixMethod /Subtractive def
+		/altSpaceNumChannels 4 def
+	  }
+	  {
+		alternativeSpace DocRgbSpace eq
+		{
+		  /mixMethod /Additive def
+		  /altSpaceNumChannels 3 def
+		}
+		{
+		  alternativeSpace DocGrayScaleSpace eq
+		  {
+			/mixMethod /Additive def
+			/altSpaceNumChannels 1 def
+		  } if
+		} ifelse
+	  }ifelse
+	}ifelse
+
+  	% apply tint on spot's alt color values
+
+  	alternativeSpace DocLabSpace eq
+	{
+		% for LAB tint just colorant values, leave lightness alone
+		alternativeColors aload pop
+		tint mul 3 1 roll
+		tint mul 3 1 roll
+		dup 100 exch sub 1 tint sub mul add 3 1 roll
+	}
+	{
+  		/tintedColor altSpaceNumChannels {0.0} repeat altSpaceNumChannels array astore def
+		
+		0 1 altSpaceNumChannels 1 sub
+		{
+			/altChannelIndex exch def
+			
+			alternativeColors altChannelIndex get
+			
+			% tint every channel
+			mixMethod /Additive eq
+			{
+				1.0 exch sub tint mul
+				1.0 exch sub
+			}
+			{
+				tint mul
+			}ifelse
+			
+			tintedColor altChannelIndex 3 2 roll put
+		}for
+		
+		tintedColor aload pop
+	}ifelse
+  
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:	devicen_colorant_mixer_proc
+% Stack: 	colorant1... colorantN  [ alternativeColor ] [names] alternativeSpace  N --> colorant_mixer_proc -- > mixedColor
+%			N - number of colorants
+%			alternativeSpace - alternative color space ( e.g. /DocGrayScaleSpace, /DocRgbSpace, /DocCmykSpace )
+%			colorant i - colorant values
+%			alternativeColor N - colorant representation in alternative colorspace
+%			names N - alternative color plate names
+%			mixedColor - mixed color in alternativeColorspace
+% Desc: 	mixes colorants to produce color representation in alternative color space
+%----------------------------------------------------------------------------
+/devicen_colorant_mixer_proc
+{
+	/numChannels xd
+	/alternativeSpace xd
+	/channelNames xd
+	/alternativeColors xd
+	numColorants array astore /colorants xd
+
+	/is_spot_channel_name_loc { is_spot_channel_name } bind def
+	
+	alternativeSpace DocCmykSpace eq
+	{
+		/mixMethod /Subtractive def
+		/altSpaceNumChannels 4 def
+		/is_spot_channel_name_loc { is_cmyk_channel_name not } bind def
+	}
+	{
+		alternativeSpace DocRgbSpace eq
+		{
+			/mixMethod /Additive def
+			/altSpaceNumChannels 3 def
+			/is_spot_channel_name_loc { is_rgb_channel_name not } bind def
+		}
+		{
+			alternativeSpace DocGrayScaleSpace eq
+			{
+				/mixMethod /Additive def
+				/altSpaceNumChannels 1 def
+				/is_spot_channel_name_loc { /Gray ne } bind def
+			} if
+		} ifelse
+	}ifelse
+
+  % iterate over all components of alternative color space
+  mixMethod /Additive eq
+  {
+	/mixedColor altSpaceNumChannels {0.0} repeat altSpaceNumChannels array astore def
+
+	/bProcessPlateTinted false def
+	
+	0 1 numChannels 1 sub
+	{
+		/channelIndex exch def
+
+		channelNames channelIndex get is_spot_channel_name_loc
+		/bSpotChannel xd	
+		/sourceChannel colorants channelIndex get def								% colorant [channelIndex]
+		
+		/bWhiteBackground
+			0 mixedColor {add} forall
+			altSpaceNumChannels div
+			0.999 gt bProcessPlateTinted and
+		def
+		
+		bSpotChannel bProcessPlateTinted not and
+		{
+			/bSpotChannel false def
+		}if
+		
+		0 1 altSpaceNumChannels 1 sub
+		{
+			/altChannelIndex exch def
+			/mixedChannel mixedColor altChannelIndex get def
+
+			sourceChannel
+			alternativeColors channelIndex get altChannelIndex get 	% alternativeColor[channelIndex][altChannelIndex]
+			1.0 exch sub mul
+			1.0 exch sub
+		
+			dup 1.0 gt { pop 1.0 }if
+			dup 0.0 lt { pop 0.0 }if
+			
+			bSpotChannel
+			{
+				sourceChannel 0.0 gt
+				{
+					% paints area covered by spot
+					mixedChannel mul
+				}
+				{
+					% paints area not covered by spot ink
+					pop mixedChannel
+				}ifelse
+			}
+			{
+				/bProcessPlateTinted true def
+
+				globaldict begin
+					/bSkipDeviceNImage where
+					{
+						pop false
+					}
+					{
+						true
+					}
+					ifelse
+				end
+				
+				DevicenImage and
+				{
+					pop
+
+					sourceChannel
+					alternativeColors channelIndex get altChannelIndex get 	% alternativeColor[channelIndex][altChannelIndex]
+					mul
+					
+					mixedChannel add
+				}
+				{
+					mixedChannel add
+				}ifelse
+			}ifelse
+			
+			dup 1.0 gt { pop 1.0 }if
+			dup 0.0 lt { pop 0.0 }if
+			mixedColor altChannelIndex 3 2 roll put
+		}for
+	}for
+  }
+  {
+	/mixedColor altSpaceNumChannels {1} repeat altSpaceNumChannels array astore def
+
+	0 1 altSpaceNumChannels 1 sub
+	{
+		/targetIndex exch def
+
+		% iterate over all colorants of original colorspace
+		0 1 numColorants 1 sub
+		{
+		  /sourceIndex exch def
+		  colorants sourceIndex get								%  colorant [sourceIndex]
+		  alternativeColors sourceIndex get targetIndex get 	% alternativeColor[sourceIndex][targetIndex]
+
+		  mul
+		  1 exch sub
+
+		  mixedColor targetIndex get mul mixedColor targetIndex 3 2 roll put
+		} for
+
+		mixedColor targetIndex 1 mixedColor targetIndex get sub put
+		
+	} for
+  } ifelse
+
+  mixedColor aload pop
+} bd
+
+
+%----------------------------------------------------------------------------
+% Colorspec dictionary definition
+% Grayscale, RGB, HSB, CMYK, Lab, Spot, DeviceN and Registration color dictionaries
+% are created by replicating and extending abstract ColorSpec dictionary
+%----------------------------------------------------------------------------
+/ColorSpec
+  9 dict begin
+		/color [] def					% color component values
+		/names [] def					% color components names - reserved : (Cyan ) (Magenta) (Yellow) (Black) (Red) (Green) (Blue) (All)
+		/num 0 def						% number of color components/names
+		/ColorModel	null def	% color model : /Grayscale /Rgb /Cmyk /Spot /DeviceN /Registration
+		/ColorSpace [] def		% CSA or device colorspace array
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> set_color -->
+		% Desc: 	sets color as current
+		%----------------------------------------------------------------------------
+		/set_color
+		{
+			ColorSeparationLevel1
+			{
+				convert_to_cmyk /color get aload pop setcmykcolor
+			}
+			{
+				ColorSpace safe_setcolorspace
+				color aload pop setcolor
+			}
+			ifelse
+		} bd
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> separate_set_color --> bool
+		%					bool - painting flag : true - paint, false - do not paint
+		% Desc: 	separates color, if necessary, and sets as current. Painting
+		%					flag is set according whether separation to current plate happened
+		%					and overprint settings
+		%----------------------------------------------------------------------------
+		/separate_set_color
+		{
+			SeparationMode /OnHost eq
+			{
+				separate_color
+				{
+				 /set_color dexec true
+				}
+				{
+					pop							% remove colorspec on stack
+					currentoverprint
+					{
+						false					% overprint flag is on, do not knockout
+					}
+					{
+						% overprint flag is off, knockout
+						SeparateInColor
+						{
+							% knockout - paint white CMYK object
+							0 0 0 0 SetCmyk_5 true
+						}
+						{
+							% knockout - paint white grayscale object
+							1 SetGry true
+						} ifelse
+					} ifelse
+				} ifelse
+			}
+			{
+				set_color true
+			} ifelse
+		} bd
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> separate_color --> colorspec bool
+		%					colorspec - separated color
+		%					bool - separation result : true - color is separated, false - no separation
+		% Desc: 	separates color according to global separation settings and leaves
+		%					separated color and separation result on stack
+		%----------------------------------------------------------------------------
+		/separate_color	{ currentdict false } bd
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> convert_to_cmyk --> colorspec
+		% Desc: 	converts current colorspec to CMYK colorspec
+		%----------------------------------------------------------------------------
+		/convert_to_cmyk { currentdict } bd
+
+	currentdict end
+def
+
+%----------------------------------------------------------------------------
+% Grayscale color dictionary definition
+%----------------------------------------------------------------------------
+/GrayscaleColorSpec
+	ColorSpec 9 dict copy
+  begin
+		/names {/Black} def									% color components names
+		/num 1 def													% number of color components/names
+		/ColorModel	/Grayscale def					% color model
+		/ColorSpace DocGrayScaleSpace def		% CSA or device colorspace array
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> separate_color --> colorspec bool
+		%					colorspec - separated color
+		%					bool - separation result : true - color is separated, false - no separation
+		% Desc: 	separates color according to global separation settings and leaves
+		%					separated color and separation result on stack
+		%----------------------------------------------------------------------------
+		/separate_color
+		{
+			currentdict false
+
+			SeparationMode /OnHost eq
+			{
+				SeparationPlateName /Black eq
+				{
+					SeparateInColor
+					{
+						pop convert_to_cmyk true
+					}
+					{
+						pop true
+					} ifelse
+				}if
+			}if
+		} bd
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> convert_to_cmyk --> colorspec
+		% Desc: 	converts current colorspec to CMYK colorspec
+		%----------------------------------------------------------------------------
+		/convert_to_cmyk
+		{
+			0 0 0 color aload pop 1 exch sub create_cmyk_color
+		} bd
+	currentdict end
+def
+
+%----------------------------------------------------------------------------
+% Proc:	create_grayscale_color
+% Stack: 	tint --> create_grayscale_color -- >colorspec
+%				tint - gray component value
+%				colorspec - colorspec dicitonary
+% Desc: 	creates grayscale color dictionary
+%----------------------------------------------------------------------------
+/create_grayscale_color
+{
+	GrayscaleColorSpec 9 dict copy
+	begin
+		/color exch 1 array astore def			% color component values
+		/ColorSpace DocGrayScaleSpace def		% document Grayscale color space 	
+	currentdict end
+} bd
+
+%----------------------------------------------------------------------------
+% RGB color dictionary definition
+%----------------------------------------------------------------------------
+/RgbColorSpec
+	ColorSpec 9 dict copy
+  begin
+    /names {/Red /Green /Blue} def		% color components names
+    /num 3 def												% number of color components/names
+		/ColorModel	/Rgb def							% color model
+    /ColorSpace DocRgbSpace def				% CSA or device colorspace array
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> separate_color --> colorspec bool
+		%					colorspec - separated color
+		%					bool - separation result : true - color is separated, false - no separation
+		% Desc: 	separates color according to global separation settings and leaves
+		%					separated color and separation result on stack
+		%----------------------------------------------------------------------------
+		/separate_color
+		{
+			convert_to_cmyk /separate_color dexec
+		} bd
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> convert_to_cmyk --> colorspec
+		% Desc: 	converts current colorspec to CMYK colorspec
+		%----------------------------------------------------------------------------
+		/convert_to_cmyk
+		{
+			color aload pop convert_rgb_to_cmyk create_cmyk_color
+		} bd
+	currentdict end
+def
+
+%----------------------------------------------------------------------------
+% Proc:	create_rgb_color
+% Stack: 	r g b --> create_rgb_color -- >colorspec
+%				r, g, b - Red, Green, Blue color components respectively
+%				colorspec - colorspec dicitonary
+% Desc: 	creates RGB color dictionary
+%----------------------------------------------------------------------------
+/create_rgb_color
+{
+	RgbColorSpec 9 dict copy
+	begin
+		3 array astore /color exch def		% color component values
+		/ColorSpace DocRgbSpace def			% document RGB color space 	
+	currentdict end
+} bd
+
+%----------------------------------------------------------------------------
+% HSB color dictionary definition
+% HSB is a math transform of RGB color model and is represented by RGB color space
+%----------------------------------------------------------------------------
+/HsbColorSpec
+	ColorSpec 9 dict copy
+  begin
+    /names {/Hue /Saturation /Brightness} def		% color components names
+    /num 3 def												% number of color components/names
+		/ColorModel	/Hsb def							% color model
+    /ColorSpace DocRgbSpace def				% CSA or device colorspace array
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> separate_color --> colorspec bool
+		%					colorspec - separated color
+		%					bool - separation result : true - color is separated, false - no separation
+		% Desc: 	separates color according to global separation settings and leaves
+		%					separated color and separation result on stack
+		%----------------------------------------------------------------------------
+		/separate_color
+		{
+			convert_to_cmyk /separate_color dexec
+		} bd
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> convert_to_cmyk --> colorspec
+		% Desc: 	converts current colorspec to CMYK colorspec
+		%----------------------------------------------------------------------------
+		/convert_to_cmyk
+		{
+			color aload pop
+			hsb2rgb
+			convert_rgb_to_cmyk create_cmyk_color
+		} bd
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> convert_to_rgb --> colorspec
+		% Desc: 	converts current colorspec to RGB colorspec
+		%----------------------------------------------------------------------------
+		/convert_to_rgb
+		{
+			color aload pop
+			hsb2rgb
+			create_rgb_color
+		} bd
+
+	currentdict end
+def
+
+%----------------------------------------------------------------------------
+% Proc:	create_hsb_color
+% Stack: 	h s b --> create_hsb_color -- >colorspec
+%				h, s, b - Hue, Saturation, Brightness color components respectively
+%				colorspec - colorspec dicitonary
+% Desc: 	creates HSB color dictionary
+%----------------------------------------------------------------------------
+/create_hsb_color
+{
+	HsbColorSpec 9 dict copy
+	begin
+		3 array astore /color exch def		% color component values
+		/ColorSpace DocRgbSpace def				% document RGB color space 	
+	currentdict end
+} bd
+
+%----------------------------------------------------------------------------
+% CMYK color dictionary definition
+%----------------------------------------------------------------------------
+/CmykColorSpec
+  ColorSpec 9 dict copy													% copy colorspec
+  begin
+    /names {/Cyan /Magenta /Yellow /Black} def	% color components names
+    /num 4 def																	% number of color components/names
+ 		/ColorModel	/Cmyk def												% color model
+    /ColorSpace DocCmykSpace def								% CSA or device colorspace array
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> separate_color --> colorspec bool
+		%					colorspec - separated color
+		%					bool - separation result : true - color is separated, false - no separation
+		% Desc: 	separates color according to global separation settings and leaves
+		%					separated color and separation result on stack
+		%----------------------------------------------------------------------------
+		/separate_color
+		{
+			currentdict false
+
+			SeparationPlateIndex 0 ge
+			SeparationPlateIndex 3 le and
+			{
+				color SeparationPlateIndex get	% get tint on current separation plate
+
+				dup 0 gt
+				{
+					3 1 roll pop pop
+					% tint on current plate is not zero - have separation
+					SeparateInColor
+					{
+						% move tint to SeparationPlateIndex position in CMYK color
+						% so for example Cyan plate will print in pure cyan CMYK
+						% color instead of default grayscale
+
+						0 0 0 4 SeparationPlateIndex roll create_cmyk_color true
+					}
+					{
+						% separate to grayscale color
+						1 exch sub create_grayscale_color true
+					} ifelse
+				}
+				{
+					pop
+				} ifelse
+			} if
+		} bd
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> convert_to_cmyk --> colorspec
+		% Desc: 	converts current colorspec to CMYK colorspec
+		%----------------------------------------------------------------------------
+		/convert_to_cmyk
+		{
+			% it is CMYK already, return current colorspec
+			currentdict
+		} bd
+	currentdict end
+def
+
+%----------------------------------------------------------------------------
+% Proc:	create_cmyk_color
+% Stack: 	c m y k --> create_cmyk_color -- >colorspec
+%				c, m, y, k - Cyan, Magenta, Yellow and Black color components respectively
+%				colorspec - colorspec dicitonary
+% Desc: 	creates CMYK color dictionary
+%----------------------------------------------------------------------------
+/create_cmyk_color
+{
+  CmykColorSpec 9 dict copy
+  begin
+    4 array astore /color exch def			% color component values
+	/ColorSpace DocCmykSpace def			% document CMYK color space 	
+  currentdict end
+} bd
+
+%----------------------------------------------------------------------------
+% Spot color dictionary definition
+%----------------------------------------------------------------------------
+/SpotColorSpec
+  ColorSpec 9 dict copy
+  begin
+    /num 1 def											% number of color components/names
+		/ColorModel	/Spot def						% color model
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> set_color -->
+		% Desc: 	sets color as current
+		%----------------------------------------------------------------------------
+		/set_color
+		{
+			ColorSeparationLevel1
+			{
+				color aload pop get_cmyk_alternative_color /color get aload pop names aload pop findcmykcustomcolor exch setcustomcolor
+			}
+			{
+				ColorSpace safe_setcolorspace
+				color aload pop setcolor
+			}
+			ifelse
+		} bd
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> separate_color --> colorspec bool
+		%					colorspec - separated color
+		%					bool - separation result : true - color is separated, false - no separation
+		% Desc: 	separates color according to global separation settings and leaves
+		%					separated color and separation result on stack
+		%----------------------------------------------------------------------------
+		/separate_color
+		{
+			currentdict false					% retvalue - default case, no separation
+			SeparationPlateIndex 4 eq			% make sure current plate is spot plate
+			{
+				names aload pop SeparationPlateName eq
+				{
+					color aload pop						% get tint on current spot separation plate
+					dup 0 gt							% duplicate tint value to be consumed by comparison
+					{
+						% remove current color and retvalue from stack
+						3 1 roll pop pop
+
+						% tint is not zero - we have separation
+						SeparateInColor
+						{
+							% convert color to CMYK to paint separation in color
+							pop convert_to_cmyk true
+						}
+						{
+							% separate to gray color
+							1 exch sub create_grayscale_color true
+						} ifelse
+					}
+					{
+						pop % remove duplicated tint from stack
+					} ifelse
+				} if
+			} if
+		} bd
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> convert_to_cmyk --> colorspec
+		% Desc: 	converts current colorspec to CMYK colorspec
+		%----------------------------------------------------------------------------
+		/convert_to_cmyk
+		{
+			/alternativeSpace ColorSpace 2 get def		% get alternative colorspace
+			/tintTransformProc ColorSpace 3 get def		% get tint transformation procedure
+
+			alternativeSpace DocCmykSpace eq
+			{
+				% alternative space is CMYK, create CMYK color from alternative color values
+				color aload pop tintTransformProc create_cmyk_color
+			}
+			{
+				alternativeSpace DocRgbSpace eq
+				{
+					% alternative space is RGB, create RGB color from alternative color values
+					% and convert RGB color to CMYK
+					color aload pop tintTransformProc create_rgb_color /convert_to_cmyk dexec
+				}
+				{
+					alternativeSpace DocGrayScaleSpace eq
+					{
+						% alternative space is grayscale, invert spot tint and use as K component of CMYK color
+						0 0 0 color aload pop 1 sub create_cmyk_color
+					}
+					{
+						0 0 0 1 create_cmyk_color
+					}ifelse
+				} ifelse
+			} ifelse
+		} bd
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> get_cmyk_alternative_color --> colorspec
+		% Desc: 	obtains CMYK representation of this spot color
+		%----------------------------------------------------------------------------
+		/get_cmyk_alternative_color
+		{
+			/alternativeSpace ColorSpace 2 get def		% get alternative colorspace
+
+			alternativeSpace DocCmykSpace eq
+			{
+				% alternative space is CMYK, create CMYK color from alternative color values
+				alternativeColor aload pop create_cmyk_color
+			}
+			{
+				alternativeSpace DocRgbSpace eq
+				{
+					% alternative space is RGB, create RGB color from alternative color values
+					% and convert RGB color to CMYK
+					alternativeColor  aload pop create_rgb_color /convert_to_cmyk dexec
+				}
+				{
+					alternativeSpace DocGrayScaleSpace eq
+					{
+						% alternative space is grayscale
+						alternativeColor  aload pop create_grayscale_color /convert_to_cmyk dexec
+					} 
+					{
+						0 0 0 1 create_cmyk_color
+					}ifelse
+				} ifelse
+			} ifelse
+		} bd
+	currentdict end
+def
+
+%----------------------------------------------------------------------------
+% Proc:	create_spot_colorspace
+% Stack: 	name [alternativeColor] alternativeSpace  --> create_spot_colorspace -- > colorspace
+%				name - spot color name
+%				alternativeSpace - alternative colorspace (/DocGrayScaleSpace, /DocRgbSpace, /DocCmykSpace )
+%				alternativeColor - spot color representation in alternative colorspace
+% Desc: 	creates spot ( named ) colorspace
+%----------------------------------------------------------------------------
+/create_spot_colorspace
+{
+  load /alternativeSpace xd
+  /alternativeColor xd
+  /name xd
+ 
+  [ /Separation name alternativeSpace [ alternativeColor alternativeSpace /spot_tint_transform_proc cvx ] cvx ]
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		create_spot_color
+% Stack:	tint spotSpace --> create_spot_color -- >colorspec or
+%         tint name [alternativeColor] alternativeSpace --> create_spot_color -- >colorspec or
+%						tint - spot color ink value
+%						name - spot color name
+%						alternativeColor - spot color representation in alternative colorspace
+%						alternativeSpace - alternative colorspace (/DocGrayScaleSpace, /DocRgbSpace, /DocCmykSpace )
+% Desc: 	creates spot ( named ) colorspec. Uses spot colorspace on stack or creates
+% 				new colorspace from stack parameters
+%----------------------------------------------------------------------------
+/create_spot_color
+{
+	SpotColorSpec 9 dict copy
+  begin
+ 		dup type /arraytype ne
+    {
+			create_spot_colorspace				% create spot colorspace from stack parameters
+    } if
+		/ColorSpace xd
+    /color exch 1 array astore def	% color component values
+    ColorSpace 1 get 1 array astore
+    /names xd												% spot color name
+  currentdict end
+} bd
+
+%----------------------------------------------------------------------------
+% DeviceN color dictionary definition
+% Inherited from SpotColorSpec as there are strong similarities between
+% spot and DeviceN colors, spot being 1 ink DeviceN color
+%----------------------------------------------------------------------------
+/DevicenColorSpec
+  SpotColorSpec 9 dict copy
+  begin
+		/ColorModel	/DeviceN def							% color model
+
+    %----------------------------------------------------------------------------
+		% Stack: 	--> set_color -->
+		% Desc: 	separates color, if necessary, and sets as current
+		%----------------------------------------------------------------------------
+		/set_color
+		{
+			Level3
+			{
+				% Level 3 support DeviceN colors natively
+				ColorSpace safe_setcolorspace
+				color aload pop setcolor
+			}
+			{
+				% for Level 2 output color in alternative colorspace
+				ColorSpace 2 get setcolorspace
+				color aload pop ColorSpace 3 get exec setcolor
+			} ifelse
+		} bd
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> separate_color --> colorspec bool
+		%					colorspec - separated color
+		%					bool - separation result : true - color is separated, false - no separation
+		% Desc: 	separates color according to global separation settings and leaves
+		%					separated color and separation result on stack
+		%----------------------------------------------------------------------------
+		/separate_color
+		{
+			currentdict false			% default case - no separation
+
+			/PlateIndex -1 def
+
+			0 1 num 1 sub
+			{
+				dup
+				names exch get SeparationPlateName eq
+				{
+					/PlateIndex xd
+					exit
+				} if
+				pop
+			} for
+
+			PlateIndex 0 ge
+			{
+				color PlateIndex get														% get separation ink tint
+				dup 0 gt
+				{
+					% tint not zero - have separation
+					SeparateInColor
+					{
+						% convert DeviceN plate color to CMYK to paint separation in color
+
+						% leave only separation component in DeviceN
+						num 1 sub {0} repeat num PlateIndex roll
+
+						% create temp DeviceN color with single component and convert it to DeviceN
+						ColorSpace create_devicen_color /convert_to_cmyk dexec true
+					}
+					{
+						% separate to gray color
+						1 exch sub create_grayscale_color true
+					} ifelse
+					4 2 roll pop pop
+				}
+				{
+					pop
+				} ifelse
+			} if
+		} bd
+
+    %----------------------------------------------------------------------------
+		% Stack: 	i --> get_ink_as_spot --> colorspec
+		%					i - DeviceN colorant index
+		%					colorspec - DeviceN colorant as spot color
+		% Desc: 	returns i-th colorant as spot color
+		%----------------------------------------------------------------------------
+		/get_ink_as_spot
+		{
+			dup /indexInk xd
+			dup color exch get		% get i-th colorant tint
+			exch names exch get		% get i-th colorant name
+			[											% start array of alternativeColor values
+				1.0 num 1 sub {0} repeat num indexInk roll		% set i-th ink to 1.0, the rest to 0.0
+				ColorSpace 3 get exec								% execute tint conversion proc to convert i-th ink to alt color space
+			]
+			ColorSpace 2 get											% get alternative space
+			create_spot_color											% create spot color
+		} bd
+	currentdict end
+def
+
+%----------------------------------------------------------------------------
+% Proc:	create_devicen_colorspace
+% Stack: 	[names] [ alternativeColor1 ] ... [alternativeColorN ]  alternativeSpace N --> create_devicen_colorspace -- > colorspace
+%				N - number of color components in DeviceN color
+%				alternativeSpace - alternative color space to define DeviceN in
+%				alternativeColori - alternative color values for i-th DeviceN colorant
+%				names - colorant names
+% Desc: 	creates DeviceN colorspace
+%----------------------------------------------------------------------------
+/create_devicen_colorspace
+{
+  /numColorants xd
+  load /alternativeSpace xd
+  bind /tintTransform exch def
+  /names xd
+
+  [ /DeviceN names alternativeSpace /tintTransform load ]
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:	create_devicen_color
+% Stack: 	C1...CN DeviceNColorspace --> create_devicen_color -- >colorspec or
+%				C1...CN [names] [ alternativeColor1 ] ... [alternativeColorN ]  alternativeSpace N --> create_devicen_color -- >colorspec
+%				C1..CN - DeviceN color components values
+%				DeviceNColorspace - DeviceN colorspace array
+% Desc: 	creates DeviceN colorspec. Either uses DeviceN colorspace on stack ot creates new colorspace
+%				from stack parameters
+%----------------------------------------------------------------------------
+/create_devicen_color
+{
+  DevicenColorSpec 9 dict copy
+  begin
+    dup type /arraytype ne
+    {
+      create_devicen_colorspace				% create DeviceN colorspace from stack parameters
+    } if
+    /ColorSpace xd										% CSA or device colorspace array
+    /num ColorSpace 1 get length def	% number of color components/names
+    /names ColorSpace 1 get def				% color components names
+    num array astore /color xd				% color component values
+  currentdict end
+} bd
+
+%----------------------------------------------------------------------------
+% Registratin color dictionary definition
+% registration color separates to all plates
+%----------------------------------------------------------------------------
+/RegistrationColorSpec
+  ColorSpec 9 dict copy
+  begin
+    /num 1 def										% number of color components/names
+ 		/ColorModel	/Registration def	% color model
+    /ColorSpace										% CSA or device colorspace array
+    {
+      [ /Separation /All DocCmykSpace { dup dup dup } ]
+    } def
+    /names [/All] def							% color components names
+
+			%----------------------------------------------------------------------------
+		% Stack: 	--> set_color -->
+		% Desc: 	sets color as current
+		%----------------------------------------------------------------------------
+		/set_color
+		{
+			ColorSeparationLevel1
+			{
+				% paint in gray on all plates
+				DocGrayScaleSpace safe_setcolorspace
+				color aload pop 1 exch sub setcolor
+			}
+			{
+				ColorSpace safe_setcolorspace
+				color aload pop setcolor
+			}
+			ifelse
+		} bd
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> separate_color --> colorspec bool
+		%					colorspec - separated color
+		%					bool - separation result : true - color is separated, false - no separation
+		% Desc: 	separates color according to global separation settings and leaves
+		%					separated color and separation result on stack
+		%----------------------------------------------------------------------------
+		/separate_color
+		{
+			SeparateInColor
+			{
+				convert_to_cmyk true
+			}
+			{
+				color aload pop 1 exch sub create_grayscale_color true
+			} ifelse
+		} bd
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> convert_to_cmyk --> colorspec
+		% Desc: 	converts current colorspec to CMYK colorspec
+		%----------------------------------------------------------------------------
+		/convert_to_cmyk
+		{
+			color aload pop dup dup dup create_cmyk_color
+		} bd
+	currentdict end
+def
+
+
+%----------------------------------------------------------------------------
+% Proc:		create_registration_color
+% Stack: 	tint --> create_registration_color -- >colorspec
+%					tint - tint of registration colorant
+% Desc: 	registration color is a color that will separate to all plates
+%					for composite output tint will appear in all channel, including spot and DeviceN
+%----------------------------------------------------------------------------
+/create_registration_color
+{
+  RegistrationColorSpec 9 dict copy
+  begin
+    1 array astore /color xd	% color component values
+  currentdict end
+} bd
+
+%----------------------------------------------------------------------------
+% LAB color dictionary definition
+%----------------------------------------------------------------------------
+/LabColorSpec
+	ColorSpec 9 dict copy
+  begin
+    /names {/L /a /b} def			% color components names
+    /num 3 def						% number of color components/names
+	/ColorModel	/Lab def			% color model
+    /ColorSpace DocLabSpace def		% LAB CSA
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> separate_color --> colorspec bool
+		%					colorspec - separated color
+		%					bool - separation result : true - color is separated, false - no separation
+		% Desc: 	separates color according to global separation settings and leaves
+		%					separated color and separation result on stack
+		%----------------------------------------------------------------------------
+		/separate_color
+		{
+			convert_to_cmyk /separate_color dexec
+		} bd
+
+		%----------------------------------------------------------------------------
+		% Stack: 	--> convert_to_cmyk --> colorspec
+		% Desc: 	converts current colorspec to CMYK colorspec
+		%----------------------------------------------------------------------------
+		/convert_to_cmyk
+		{
+			0 0 0 0 create_cmyk_color
+		} bd
+	currentdict end
+def
+
+%----------------------------------------------------------------------------
+% Proc:	create_lab_color
+% Stack: 	L a b --> create_lab_color -- >colorspec
+%			L, a, b - L, a, b color components respectively
+%			colorspec - colorspec dicitonary
+% Desc: 	creates LAB color dictionary
+%----------------------------------------------------------------------------
+/create_lab_color
+{
+	LabColorSpec 9 dict copy
+	begin
+		3 array astore /color exch def		% color component values
+		/ColorSpace DocLabSpace def			% LAB color space 	
+	currentdict end
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		set_solid_fill
+% Stack: 	colorspec --> set_solid_fill -->
+%					colorspec - color of the fill
+% Desc: 	sets fill color and fill type to solid
+%----------------------------------------------------------------------------
+/set_solid_fill
+{
+  /FillColor xd
+	/$fil 0 def
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		set_outline
+% Stack: 	colorspec --> set_outline -->
+%					colorspec - color of the outline
+% Desc: 	sets outline color
+%----------------------------------------------------------------------------
+/set_outline
+{
+  /OutlineColor xd
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:   CheckLevelCompatibility
+% Stack:  - CheckLevelCompatibility -
+% Desc:   check the PostScript level of the interpeter/device against the
+%         the PostScript level of the document we outputed, if not compatable
+%         print error message and exit smoothly.
+%----------------------------------------------------------------------------
+/CheckLevelCompatibility
+{
+  /DocPsLevel where           	% make sure that Document level is defined
+  {
+    pop
+    DocPsLevel get_ps_level gt  % if document level (LV) is 2 or more and the
+    {                         	% device is not 2 or more
+      @np                     	% newpath
+      /Courier findfont 12    	% set a font
+      scalefont setfont
+      72 144 m                	% moveto 2 inch off the bottom of the page
+      (The PostScript level of Corel document is higher than the PostScript) show
+      72 132 m
+      (level of this device. Change the PS Level in the Corel application) show
+      72 120 m
+      (by selecting the PostScript tab in the print dialog, and selecting) show
+      72 108 m
+      (document level from the Compatibility drop down list.) show
+      flush
+      spg
+      quit
+    } if
+  } if
+} bd
+
+%----------------------------------------------------------------------------
+% These two functions serve as a hook for PIPELINE ASSOCIATES INC..
+% They have implemented a Corel dictionary in their interpreter. It
+% performs mostly exotic fill rendering in .C code (instead of our
+% PS code). The key here is to make sure their dictionary is above ours
+% on the dictionary stack!!
+%
+% Notes: The first function should be called at the beginning of the script
+%        AFTER our dictionary has been put pushed.
+%        The second function should be called at the end of the script
+%        BEFORE our dictionary is popped.
+%
+% Contact: Stephen Kochan (President)  (973)428-1700
+%          Tim Demarest (Developer)
+%
+% New in Draw 8: A similar hook for Lexmark printers. They have also
+%                implemented direct support for our fountain fills.
+%
+%                The key difference between Lexmark and Pipeline's
+%                hook is that an integer, 1, is pushed on the stack. This
+%                represents a compatibility level for the Exotic Fill routines.
+%                When Corel makes a new version of CorelDRAW, this number should
+%                be incremented if changes were made to the fountain fill code
+%                which would make it ncompatible with existing Lexmark printers.
+%
+%
+%----------------------------------------------------------------------------
+/@BeginSysCorelDict
+{
+ % Pipeline hook...
+ systemdict /Corel30Dict known {systemdict /Corel30Dict get exec} if
+
+ % Lexmark hook...
+ systemdict /CorelLexDict known {1 systemdict /CorelLexDict get exec} if
+} bd
+
+/@EndSysCorelDict
+{
+ % Pipeline hook...
+ systemdict /Corel30Dict known {end} if
+
+ %Lexmark hook...
+ /EndCorelLexDict where {pop EndCorelLexDict} if
+} bd
+
+%----------------------------------------------------------------------------
+% Autoflatness for paths too complex to image.
+% The next section is to avoid the limitcheck error of typesetters.
+% The painting operators of PostScript are rewritten to increase
+% flatness until either the object can be printed, or a flatness
+% of 10 more than the initial flatness setting has been reached.
+% In this case an error message is displayed and printing continues with
+% the next object.
+% The auto-flatness will be enabled only if the value of the "AutoFlatness"
+% variable is true. The code to set this flag is output by the client app.
+%----------------------------------------------------------------------------
+/AutoFlatness where
+{
+ pop
+
+ AutoFlatness
+ {
+	 %----------------------------------------------------------------------------
+	 % @ifl Increase flatness			initial_flatness @ifl initial_flatness
+	 %----------------------------------------------------------------------------
+	 /@ifl
+	 {
+		dup currentflat
+		exch sub 10 gt             	% Is current flatness increase > 10?
+		{
+		 ([Error: PathTooComplex; OffendingCommand: AnyPaintingOperator]\n)
+		 print flush @np exit
+		}
+		{
+		 currentflat 2 add setflat
+		} ifelse
+	 } bd
+
+	 %----------------------------------------------------------------------------
+	 % --- Then redefine fill, eofill, clip, eoclip, & stroke
+	 %----------------------------------------------------------------------------
+	 /@fill /fill ld
+	 /fill
+	 {
+		currentflat
+		{
+		 {@fill} stopped
+		 {@ifl}
+		 {exit}
+		 ifelse
+		} bind loop
+		setflat
+	 } bd
+
+	 /@eofill /eofill ld
+	 /eofill
+	 {
+		currentflat
+		{
+		 {@eofill} stopped
+		 {@ifl}
+		 {exit}
+		 ifelse
+		} bind loop
+		setflat
+	 } bd
+
+	 /@clip /clip ld
+	 /clip
+	 {
+		currentflat
+		{
+		 {@clip} stopped
+		 {@ifl}
+		 {exit}
+		 ifelse
+		} bind loop
+		setflat
+	 } bd
+
+	 /@eoclip /eoclip ld
+	 /eoclip
+	 {
+		currentflat
+		{
+		 {@eoclip} stopped
+		 {@ifl}
+		 {exit}
+		 ifelse
+		} bind loop
+		setflat
+	 } bd
+
+	 /@stroke /stroke ld
+	 /stroke
+	 {
+		currentflat
+		{
+		 {@stroke} stopped
+		 {@ifl}
+		 {exit}
+		 ifelse
+		} bind loop
+		setflat
+	 } bd
+	} if
+} if
+
+%----------------------------------------------------------------------------
+% Proc:	@ssa
+% Stack:	- @ssa -
+% Desc:	turn strokeadjust on if we're using level 2
+%----------------------------------------------------------------------------
+/@ssa
+  Level2
+  {
+    {true setstrokeadjust}
+  }
+  {
+    {}
+  } ifelse
+bd
+
+%----------------------------------------------------------------------------
+/d /setdash ld               	% d  setdash     					array offset d -
+/j /setlinejoin ld           	% j  set line join     		join j -
+/J /setlinecap ld            	% J  set line cap       	cap J -
+/M /setmiterlimit ld         	% M  set miter limit  		value M -
+/w /setlinewidth ld          	% w  set line width    		width w -
+/O {/FillOverprint xd} bd     % O  set overprint fill   flag O -
+/R {/OutlineOverprint xd} bd  % R  set overprint stroke	flag R -
+/W /eoclip ld          				% W  clip path          	- W -
+/c /curveto ld               	% c  curveto smooth    		x1 y1 x2 y2 x3 y3 c -
+/C /c ld                     	% C  curveto corner    		x1 y1 x2 y2 x3 y3 C -
+/l /lineto ld                	% l  lineto smooth     		x y l -
+/L /l ld                     	% L  lineto corner     		x y L -
+/rl /rlineto ld              	% rl rlineto     					x y rl -
+/m /moveto ld                	% m  moveto      					x y m -
+/n /newpath ld               	% n  newpath     					- n -
+/N /newpath ld               	% N  newpath     					- N -
+/P {11 rp} bd                	% P  pattern stroke    		(same as p)
+/u {} bd                     	% u  begin group        	- u -
+/U {} bd                     	% U  end group          	- U -
+/A {pop} bd                  	% A  locked object     		flag A -
+/q /@gs ld                   	% q  gsave        				- g -
+/Q /@gr ld                   	% Q  grestore     				- Q -
+/& {}bd                      	% &  pattern marker    		- & -
+/@j {@sv @np} bd             	% StartArrowhead
+/@J {@rs} bd                 	% EndArrowhead
+
+%----------------------------------------------------------------------------
+% Proc: 	g
+% Stack:	gray g -
+% Desc:		set gray color for solid fill
+%----------------------------------------------------------------------------
+/g
+{
+ 1 exch sub           				% get black component
+ 0 0 0 4 roll 3
+ create_cmyk_color set_solid_fill
+ /$fil 0 def       						% set name (null), fill type
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		G
+% Stack:	gray G -
+% Desc:		set gray outline color
+%----------------------------------------------------------------------------
+/G
+{
+ 1 sub neg            				% get black component
+ 0 0 0 4 -1 roll
+ create_cmyk_color set_outline
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	i
+% Stack: 	flatness i -
+% Desc: 	Sets the current flatness
+%----------------------------------------------------------------------------
+/i
+{
+ dup 0 ne
+ {setflat}
+ {pop}
+ ifelse
+} bd
+
+%----------------------------------------------------------------------------
+% Curveto procedures
+%----------------------------------------------------------------------------
+/v                           	% v		curveto smooth    	x12 y12 x3 y3 v -
+{
+ 4 -2 roll                   	% get x12 y12 on top
+ 2 copy                      	% duplicate them
+ 6 -2 roll c                 	% move x3 y3 back to the end
+} bd
+
+/V /v ld                     	% V   curveto corner    	x12 y12 x3 y3 V -
+/y {2 copy c} bd             	% y   curveto smooth    	x1 y1 x23 y23 y -
+/Y /y ld                     	% Y   curveto corner    	x1 y1 x23 y23 Y -
+
+%----------------------------------------------------------------------------
+% Proc: 	@w
+% Stack: 	[matrix] bscale width height angle @w -
+% Desc:		set pen matrix "$ptm" to desired settings
+% 				bscale is a flag:
+%					0: no scale
+%					1: scale with object using matrix supplied on the stack
+% 				matrix is passed only if bscale is 1 (object total matrix)
+%----------------------------------------------------------------------------
+/@w
+{
+ matrix rotate /$ptm xd      	% define $ptm to be rotation matrix
+ matrix scale                	% set pen shape
+ $ptm dup concatmatrix
+ /$ptm xd
+ 1 eq                        	% if scale, concat object matrix
+ {
+  $ptm exch dup concatmatrix
+  /$ptm xd
+ }if
+ 
+ /patternScallingMatrix where	% apply pattern scaling matrix, if exists, to account for line width scaling in patterns
+ {
+	pop
+	patternScallingMatrix $ptm matrix concatmatrix
+	/$ptm xd
+ }if
+ 
+ 1 w                         	% basic thickness to be transformed by $ptm
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	@g
+% Stack: 	freq ang spotproc 1 @g -
+%							--or--
+%					0 @g - 		(use default)
+% Desc:		Set halftone screen for gray filling
+% 				spotproc is a spot procedure name (ex: /@dot or /@lin)
+%----------------------------------------------------------------------------
+/@g
+{
+ 1 eq dup /$sdf xd           	% set global flag
+ {                           	% next 3 parameters are set only if parm1 is 1
+  /$scp xd                   	% Current spot func for fill
+  /$sca xd                   	% Current screen angle for fill
+  /$scf xd                   	% Current screen frequency for fill
+ } if
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	@G
+% Stack: 	freq ang spotproc 1 @G -
+%								--or--
+%					0 @G - 		(use default)
+% Desc:		Set halftone screen for gray stroking
+% 				spotproc is a spot procedure name (ex: /@dot or /@lin)
+%----------------------------------------------------------------------------
+/@G
+{
+ 1 eq dup /$SDF xd           	% set global flag
+ {                           	% next 3 parameters are set only if parm1 is 1
+  /$SCP xd                   	% Current spot func for stroke
+  /$SCA xd                   	% Current screen angle for stroke
+  /$SCF xd                   	% Current screen frequency for stroke
+ } if
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	@D
+% Stack: 	freq ang spotproc @D -
+% Desc: 	setscreen for all document
+%----------------------------------------------------------------------------
+/@D
+{
+ 2 index 0 eq
+ {
+  $dsf 3 1 roll              	% frequency angle proc deffreq
+  4 -1 roll pop
+ } if
+ 3 copy
+ exch $Scra add exch load    	%: frequency angle+$Scra {proc}
+ SetScr
+ /$dsp xd                    	% default spot func name
+ /$dsa xd                    	% default screen angle
+ /$dsf xd                    	% default screen frequency function
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	$ngx
+% Stack:
+% Desc: 	set screen function
+%----------------------------------------------------------------------------
+/$ngx
+{
+ $SDF
+ {
+  $SCF
+  SeparationMode /Composite eq    % Check if not performing color seps.
+  {$SCA}
+  {$dsa}
+  ifelse
+  $SCP
+  @ss
+ }if      												% alt. screen? (determined by stroke attribs)
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	min
+% Stack: 	val1 val2 --> min --> value
+% Desc: 	minimum
+%----------------------------------------------------------------------------
+/min
+{
+ 2 copy le
+ {pop}
+ {exch pop} ifelse           	% get minimum of both values
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	max
+% Stack: 	val1 val2 --> max --> value
+% Desc: 	maximum
+%----------------------------------------------------------------------------
+/max
+{
+ 2 copy ge
+ {pop}
+ {exch pop}
+ ifelse  						         	% get max of both values
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	in_range
+% Stack: 	value minimum maximum --> in_range --> newvalue
+% Desc: 	forces a value between two limits
+%----------------------------------------------------------------------------
+/in_range
+{
+  3 -1 roll                   % get value on top
+  min max
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	InRange
+% Stack: 	value minimum maximum --> in_range --> newvalue
+% Desc: 	The same as in_range, legacy namy for use in PS fills
+%----------------------------------------------------------------------------
+/InRange /in_range load bd
+
+%----------------------------------------------------------------------------
+% Proc:	@sqr
+% Stack: 	size @sqr -
+% Desc:
+%----------------------------------------------------------------------------
+/@sqr
+{
+ dup 0 rl
+ dup 0 exch rl
+ neg 0 rl
+ @cp
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		currentscale
+% Stack: 	- currentscale sx sy
+% Desc:
+%----------------------------------------------------------------------------
+/currentscale
+{
+ 1 0 dtransform
+ matrix defaultmatrix idtransform
+ dup mul exch dup mul add sqrt
+
+ 0 1 dtransform
+ matrix defaultmatrix idtransform
+ dup mul exch dup mul add sqrt
+
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		@unscale
+% Stack: 	- unscale -
+% Desc:
+%----------------------------------------------------------------------------
+/@unscale
+{
+ %stub... currentscale 1 exch div exch 1 exch div exch scale
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	wDstChck
+% Stack:
+% Desc: 	NEEDED by functions in USERPROC.TXT
+%----------------------------------------------------------------------------
+/wDstChck
+{
+ 2 1 roll dup 3 -1 roll
+ eq {1 add} if
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	@dot
+% Stack: 	x y @dot num
+% Desc:		implementation of a dot spot function for halftoning(see setscreen)
+%----------------------------------------------------------------------------
+/@dot
+{
+ dup mul exch dup mul add
+ 1 exch sub
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	@lin
+% Stack: 	x y @lin num
+% Desc:		implementation of a line spot function for halftoning(see setscreen)
+%----------------------------------------------------------------------------
+/@lin
+{
+ exch pop abs 1 exch sub
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	cmyk2rgb
+% Stack: 	c m y k cmyk2rgb r g b
+% Desc: 	converts cmyk to rgb using standard algorithm
+%----------------------------------------------------------------------------
+/cmyk2rgb
+{                            	% c m y k
+ 3
+ {
+  dup 5 -1 roll             	% m y k k c
+  add                       	% m y k k+c
+  1 exch sub                	% m y k 1-(k+c)         % r = 1-(k+c)
+  dup 0 lt                  	% m y k r r<0
+  {
+   pop 0                    	% m y k 0               % 0 < r < 1
+  } if
+  exch                      	% m y r k
+ } repeat                   	% r g b k               % for each color
+ pop                        	% r g b
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	rgb2cmyk
+% Stack: 	r g b rgb2cmyk c m y k
+% Desc: 	converts rgb to cmyk using standard algorithm
+%----------------------------------------------------------------------------
+/rgb2cmyk
+{                            	% r g b
+ 3
+ {                           	% r g b
+  1 exch sub                 	% r g 1-b       				% y = 1 - b
+  3 1 roll                   	% y r g
+ } repeat                    	% c m y
+ 3 copy                      	% c m y c m y
+ min min                     	% c m y min(c,m,y)     	% K=min(c,m,y)
+ 3
+ {                           	% c m y K
+  dup 5 -1 roll              	% m y K K c
+  sub neg                    	% m y K c-K     				% C = c - K
+  exch                       	% m y C K
+ } repeat                    	% C M Y K
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	rgb2g
+% Stack:
+% Desc: 	converts rgb to gray using standard algorithm
+%----------------------------------------------------------------------------
+/rgb2g
+{
+ 2 index .299 mul            	% r g b .299r
+ 2 index .587 mul add        	% r g b .299r+.587g
+ 1 index .114 mul add        	% r g b .299r+.587g+.144b
+ 4 1 roll                    	% gray r g b
+ pop pop pop                 	% gray
+} bd
+
+%----------------------------------------------------------------------------
+% WaldoColor might already be defined if this is an EPS file
+%----------------------------------------------------------------------------
+/WaldoColor_5 where
+{
+ pop
+}
+{
+  %----------------------------------------------------------------------------
+  % store pointers to actual color operators
+  %----------------------------------------------------------------------------
+  /CorelImage systemdict /image get def
+  /CorelSetGray systemdict /setgray get def
+  /CorelGetGray systemdict /currentgray get def
+  /CorelSetTransfer systemdict /settransfer get def
+  /CorelGetTransfer systemdict /currenttransfer get def
+
+  /SetRgb /setrgbcolor ld
+  /GetRgb /currentrgbcolor ld
+  /SetGry /setgray ld
+  /GetGry /currentgray ld
+  /SetRgb2 systemdict /setrgbcolor get def
+  /GetRgb2 systemdict /currentrgbcolor get def
+  /SetHsb systemdict /sethsbcolor get def
+  /GetHsb systemdict /currenthsbcolor get def
+
+  %----------------------------------------------------------------------------
+  % Proc: 	rgb2hsb
+  % Stack:
+  % Desc: 	converts rgb to hsb
+  %----------------------------------------------------------------------------
+  /rgb2hsb
+  {
+   SetRgb2
+   GetHsb
+  } bd
+
+  %----------------------------------------------------------------------------
+  % Proc: 	hsb2rgb
+  % Stack:
+  % Desc: 	converts hsb to rgb
+  %----------------------------------------------------------------------------
+  /hsb2rgb
+  {                            	% h s b
+   3 -1 roll                   	% s b h
+   dup floor sub               	% s b H         			% ensure 0 < H < 1
+   3 1 roll                    	% H s b
+   SetHsb
+   GetRgb2
+  } bd
+
+  %----------------------------------------------------------------------------
+  % define the setcmykcolor operator if not already defined
+  % if it is already defined, we want to store it away so that when we later
+  % superclass this operator to our own in order to separate eps files, we can
+  % access the existing call.  If it does not exist, it will be emulated with
+  % the corresponding rgb calls.
+  %----------------------------------------------------------------------------
+  /setcmykcolor where
+  {
+    pop
+    /LumSepsDict where              % check if Luminus TrapWise Separation dictionary is defined
+    {
+      pop
+      /SetCmyk_5
+      {
+        LumSepsDict                 % get setcmykcolor from their dict and run it
+        /setcmykcolor get exec
+      } def
+    }
+    {
+      /AldusSepsDict where
+      {
+        pop
+        /SetCmyk_5
+        {
+          AldusSepsDict             % get setcmykcolor from their dict and run it
+          /setcmykcolor get exec
+        } def
+      }
+      {
+        /SetCmyk_5 /setcmykcolor ld
+      } ifelse
+    } ifelse
+  }
+  {
+	%----------------------------------------------------------------------------
+	/setcmykcolor
+	{
+	create_cmyk_color /separate_set_color dexec
+	/$ffpnt xd		% painting flag
+	} bd
+
+    /SetCmyk_5                      % cyan magenta yellow black setcmykcolor -
+    {
+      cmyk2rgb
+      SetRgb
+    } bd
+  } ifelse
+
+  %----------------------------------------------------------------------------
+  /currentcmykcolor where
+  {
+   pop
+   /GetCmyk
+   /currentcmykcolor ld
+  }
+  {
+   /GetCmyk
+   {
+    GetRgb
+    rgb2cmyk
+   } bd
+  } ifelse
+
+  %----------------------------------------------------------------------------
+  % define the setoverprint operator if not already defined
+  % NOTE: We do not want to redefine this operator if it is defined so that
+  %       other apps can separate our EPS files.
+  %----------------------------------------------------------------------------
+  /setoverprint where
+  {pop}
+  {
+   /setoverprint               	% boolean setoverprint
+   {
+    /CurrentOverprint xd
+   } bd
+  } ifelse
+
+  %----------------------------------------------------------------------------
+  % define the currentoverprint operator if not already defined
+  % NOTE: We do not want to redefine this operator if it is defined so that
+  %       other apps can separate our EPS files.
+  %----------------------------------------------------------------------------
+  /currentoverprint where
+  {pop}
+  {
+   /currentoverprint           	% currentoverprint boolean
+   {
+		CurrentOverprint
+   } bd
+  } ifelse
+
+  %----------------------------------------------------------------------------
+  % proc : ColorImage
+  %
+  % Stack: width height #bits matrix dataaq1 ... dataaqN multi
+  %        #colors ColorImage -
+  %        where:
+  %          dataaqI: Data aquisition function I ( we can have 1, 3 or 4 of them)
+  %          multi  : Boolean, true means multi-stram image, false means single stram image
+  %
+  % Desc : Defines the ColorImage operator
+  %				 if colorimage is define it uses the definition for our ColorImage,
+  %        if not we will define our own.
+  %
+  %----------------------------------------------------------------------------
+  /colorimage where
+  {
+   pop
+   /ColorImage {colorimage} def	      % 8Dec94: rwm: this used to be /colorimage load def
+                                      % it was changed to support colorimage separation
+  }
+  {
+   /ColorImage
+   {
+     /ncolors xd			                % # of colors
+     /$multi xd                       % multi-stream colorimage
+     $multi true eq
+     {                                % multi-stream colorimage, pop all the image data
+       ncolors 3 eq
+       {                              % RGB image
+         /daqB xd
+         /daqG xd
+         /daqR xd
+         pop pop exch pop abs         % pop the stack leave the # of lines
+         {
+           daqR pop                   % pop the Red line
+           daqG pop                   % pop the Green line
+           daqB pop                   % pop the Blue line
+         } repeat
+       }
+       {                              % CMYK image
+         /daqK xd
+         /daqY xd
+         /daqM xd
+         /daqC xd
+         pop pop exch pop abs         % pop the stack leave the # of lines
+         {
+           daqC pop                   % pop the Cyan line
+           daqM pop                   % pop the Magenta line
+           daqY pop                   % pop the Yellow line
+           daqK pop                   % pop the Black line
+         } repeat
+       } ifelse
+     }
+     {                                % single-stream colroimage
+       /dataaq xd
+       {
+         dataaq
+         ncolors dup 3 eq
+         {
+           /$dat xd
+           0 1 $dat length
+           3 div 1 sub
+           {
+             dup 3 mul
+             $dat 1 index get
+             255 div
+             $dat 2 index 1 add get
+             255 div
+             $dat 3 index 2 add get
+             255 div
+             rgb2g 255 mul
+             cvi exch pop
+             $dat 3 1 roll put
+           } for
+           $dat 0 $dat length 3
+           idiv getinterval pop
+         }
+         {
+           4 eq
+           {
+             /$dat xd
+             0 1 $dat length
+             4 div 1 sub
+             {
+               dup 4 mul
+               $dat 1 index get
+               255 div
+               $dat 2 index 1 add get
+               255 div
+               $dat 3 index 2 add get
+               255 div
+               $dat 4 index 3 add get
+               255 div
+               cmyk2rgb rgb2g 255 mul
+               cvi exch pop
+               $dat 3 1 roll put
+             } for
+             $dat 0 $dat length
+             ncolors idiv
+             getinterval
+           } if
+         } ifelse
+       }
+       image
+     } ifelse
+   } bd
+  } ifelse
+
+  %----------------------------------------------------------------------------
+  /currentcmykcolor
+  {
+    GetCmyk
+  } bd
+
+  %----------------------------------------------------------------------------
+  /sethsbcolor
+  {
+   hsb2rgb
+   setrgbcolor
+  } bd
+
+  %----------------------------------------------------------------------------
+  /currenthsbcolor
+  {
+   currentrgbcolor
+   rgb2hsb
+  } bd
+
+  %----------------------------------------------------------------------------
+  /setgray
+  {
+   dup dup
+   setrgbcolor
+  } bd
+
+  %----------------------------------------------------------------------------
+  /currentgray
+  {
+   currentrgbcolor             	% r g b
+   rgb2g
+  } bd
+
+  %----------------------------------------------------------------------------
+  % Proc:   InsideDCS
+  % Desc:   defines the flag InsideDCS file to false, will be set just prior to
+  %         outputing a DCS file and reset after that.
+  %----------------------------------------------------------------------------
+  /InsideDCS false def
+
+  %----------------------------------------------------------------------------
+  % Proc: 	IMAGE
+  % Stack: 	- IMAGE -
+  % Desc: 	load the defined image operater and redefine it into IMAGE
+  %----------------------------------------------------------------------------
+  /IMAGE /image ld
+
+  %----------------------------------------------------------------------------
+  % Proc:   image
+  % Stack:  width height bits matrix datasrc image -
+  %         dict image -
+  % Desc: 	this proc redefine the systemdic image proc. It will either call
+  %         the IMAGE if we do not need to do anything to the image, or it
+  %         pop all the image data if the image need not to print.
+  %----------------------------------------------------------------------------
+  /image                            % Redefine image proc
+  {
+    InsideDCS                       % check if the image is inside a DCS file
+    {
+      IMAGE                         % play the image
+    }
+    {
+    /EPSDict where                  % check if an EPS dictionary on the stack
+    {                               % Inside EPS file
+      pop                           % pop dictinary
+
+      SeparationMode /Composite eq
+      {                             % composite
+        IMAGE                       % use the systemdict image call
+      }
+      {                             % separation
+        dup type /dicttype eq       % check if there is a dictionary on the stack
+        {                           % There is a dict, this must ba a LEVEL 2 or 3 IMAGE call,
+          dup /ImageType get 1 ne
+          {                         % level 3 image dictionary
+            IMAGE                   % use the systemdict image call
+          }
+          {                         % Level 2 image dictionary
+            dup dup
+            /BitsPerComponent
+            get 8 eq exch
+            /BitsPerComponent
+            get 1 eq or
+            currentcolorspace 0 get
+            DocGrayScaleSpace eq
+            and
+            {                       % It is a GrayScale or a Mono image
+              SeparationPlateName
+              (Black) eq
+              {                     % Black plate
+                IMAGE               % play the image, use the systemdict image call
+              }
+              {                     % Not a black plate
+                dup /DataSource get
+                /TCC xd             % get datasource proc from dictionary and save it
+                /Height get abs     % get number of lines
+                { TCC pop } repeat  % pop all the image lines
+              } ifelse
+            }
+            {                       % It is not a gray scale image
+              IMAGE                 % output the image
+            } ifelse
+          } ifelse
+        }
+        {                           % this is a LEVEL 1 IMAGE call
+          2 index 1 ne              % get number of bits/sample
+          {                         % 8 bits, gray image
+            SeparationPlateName
+            (Black) eq
+            {                       % Black plate
+              IMAGE                 % use the systemdict image call
+            }
+            {                       % Not a black plate
+              /TCC xd               % save the datasource proc
+              pop pop exch pop abs  % pop image parameters, leaving the number of lines only
+              { TCC pop } repeat    % pop all the image lines
+            } ifelse
+          }
+          {                         % 1 bit
+            IMAGE                   % use the systemdict image call
+          } ifelse
+        } ifelse
+      } ifelse
+    }
+    {                               % not in an EPS file
+      IMAGE                         % use the systemdict image call
+    } ifelse                        %
+    } ifelse                        % InsideDCS
+  } bd
+} ifelse
+
+%----------------------------------------------------------------------------
+% Desc: 	sets the fill mode to EVEN_ODD mode.
+%----------------------------------------------------------------------------
+/$fm 0 def
+
+%----------------------------------------------------------------------------
+% Proc: 	wfill
+% Stack: 	wfill
+% Desc: 	sets the type of fill to use (fill or eofill)
+%         depending on the fill mode (winding or even-odd).
+%----------------------------------------------------------------------------
+/wfill
+{
+ 1 $fm eq					           	% fillmode
+ {
+  fill												% normal non-zero winding number rule
+ }
+ {
+  eofill											% even-odd rule
+ } ifelse
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	@Pf
+% Stack: 	- @Pf -
+% Desc: 	Postscript Fill
+% 				Call user-defined Postscript fill with current parameters
+% 				20dec90:MB: Print PS fill only in composite
+%           or in black plane of color seps.
+% NOTE: All PS fills expect the current UNIT to be MIL (1/1000 inch)
+% and Bburx, .. need to be specified in that unit as well.
+%----------------------------------------------------------------------------
+/@Pf
+{
+ @sv
+ SeparationMode /Composite eq	% Composite or...
+ {
+  true
+ }
+ {
+  $Psc 0 ne or	 								% Color PS fill or..
+  $ink_5 3 eq or
+ }ifelse
+ 								% Black separation
+ {                           	% PS fills can be printed
+  0 J 0 j [] 0 d             	% reset stroke attributes (all PS fills set line width)
+  FillOverprint safe_setoverprint
+  FillColor /separate_set_color dexec pop
+  $ctm setmatrix             	% reset matrix for PS-filling
+  72 1000 div dup
+  matrix scale               	% scaling matrix
+  dup concat                 	% change current ctm
+  dup Bburx exch Bbury exch
+  itransform
+  ceiling cvi /Bbury xd
+  ceiling cvi /Bburx xd      	% change unit of BBox
+  Bbllx exch Bblly exch
+  itransform
+  floor cvi /Bblly xd
+  floor cvi /Bbllx xd
+  $Prm aload pop             	% Bring the parameters on stack
+  $Psn load exec             	% execute the ps fill as desired
+ }
+ {                           	% Not proper color plane, fill in white instead.
+  1 SetGry wfill
+ } ifelse
+ @rs                         	% restore original state
+ @np                         	% and clear the path
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	F
+% Stack: 	- F -
+% Desc: 	fill path
+%----------------------------------------------------------------------------
+/F
+{
+	matrix currentmatrix        					% save current transfo matrix on stack
+	$sdf
+	{
+	$scf $sca $scp @ss
+	} if                        					% alternate halftone screen?
+
+	FillOverprint safe_setoverprint
+
+	$fil 1 eq
+
+	{CorelPtrnDoFill}            					% pattern fill
+	{
+		$fil 2 eq                  					% fountain fill?
+		{gradient_fill}                      					% fountain fill path
+		{
+			$fil 3 eq                 				% Postscript fill?
+			{@Pf}                     				% PS fill
+			{
+				get_simulate_devicen FillColor /ColorModel get /DeviceN eq and
+				{
+					% simulate DeviceN color on Level 2
+					% oveprint N objects with individual DeviceN inks
+        	0 1 FillColor /num get 1 sub		% iterate through all DeviceN plates
+        	{
+          		dup 0 gt											% if not the first plate, overprint it
+          		{
+            			true safe_setoverprint
+          		}if
+
+          		FillColor /get_ink_as_spot dexec	% get DeviceN i-th ink as spot color
+
+          		/set_color	dexec									%	set DeviceN i-th ink as current color
+
+          		@gs
+          		wfill															% paint the fill
+          		@gr
+
+        	} for
+      	}
+      	{
+        	FillColor /separate_set_color dexec
+        	{wfill}
+        	{@np} ifelse
+      	} ifelse
+   } ifelse
+  } ifelse
+ } ifelse
+ $sdf
+ {
+  $dsf $dsa $dsp @ss
+ } if                        				% reset default halftone screen
+ setmatrix                   				% reset original transfo matrix on stack
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	f
+% Stack: 	- f -
+% Desc: 	closepath fill
+%----------------------------------------------------------------------------
+/f
+{
+ @cp F
+} bd
+
+
+%----------------------------------------------------------------------------
+% Proc: 	S
+% Stack: 	- S -
+% Desc: 	stroke
+%----------------------------------------------------------------------------
+/S
+{
+  matrix currentmatrix        	% save current transfo matrix on stack
+  $ctm setmatrix              	% reset normal ctm
+  $SDF {$SCF $SCA $SCP @ss}if 	% alternate halftone screen?
+
+  OutlineOverprint safe_setoverprint
+
+  get_simulate_devicen OutlineColor /ColorModel get /DeviceN eq and
+	{
+		% simulate DeviceN color on Level 2
+		% oveprint N objects with individual DeviceN inks
+
+    0 1 OutlineColor /num get 1 sub		% iterate through all DeviceN plates
+    {
+      dup 0 gt												% if not the first plate, overprint it
+      {
+        true safe_setoverprint
+      }if
+
+      OutlineColor /get_ink_as_spot dexec	% get DeviceN i-th ink as spot color
+
+      /set_color	dexec										%	set DeviceN i-th ink as current color
+
+			matrix currentmatrix
+			$ptm concat													% set the pen matrix
+			@gs
+			stroke
+			@gr
+			setmatrix														% reset the original matrix(from stack)
+
+    } for
+  }
+  {
+    OutlineColor /separate_set_color dexec
+    {
+      matrix currentmatrix
+      $ptm concat              	% set the pen matrix
+      stroke
+      setmatrix                	% reset the original matrix(from stack)
+    }
+    {@np}ifelse
+  } ifelse
+
+ $SDF {$dsf $dsa $dsp @ss}if		% reset default halftone screen
+ setmatrix                   		% reset original matrix set on stack
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	s
+% Stack: 	- s -
+% Desc: 	closepath stroke
+%----------------------------------------------------------------------------
+/s
+{
+ @cp
+ S
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	B
+% Stack: 	- B -
+% Desc: 	fill, then stroke
+%----------------------------------------------------------------------------
+/B
+{
+ @gs F @gr                   	% fill, then
+ S                           	% stroke
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	b
+% Stack: 	- b -
+% Desc: 	closepath, fill, stroke
+%----------------------------------------------------------------------------
+/b
+{
+ @cp B
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	E
+% Stack: 	name llx lly urx ury description E -
+% Desc:		define pattern
+% 				a pattern will be defined as an array of 5 entries:
+% 				(0)llx (1)lly (2)urx (3)ury (4)descrition
+% 				the description is also an array of executable strings
+%----------------------------------------------------------------------------
+/_E
+{
+ 5 array astore    						% parms are in an array
+ exch cvlit xd			      		% defined with key equal to the name(string)
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	@cc
+% Stack: 	- @cc string
+% Desc: 	collect bitmap data from currentfile (input)
+%----------------------------------------------------------------------------
+/@cc
+{
+ currentfile $dat readhexstring pop
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	@sm
+% Stack: 	- @sm -
+% Desc: 	save current transfo matrix into global $ctm
+%----------------------------------------------------------------------------
+/@sm
+{
+ /$ctm $ctm currentmatrix def
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	@E
+% Stack: 	bbllx bblly bburx bbury matrix @E -
+% Desc: 	Define Object's bbox
+% 				Must be called before painting if PATTERNS, PSFILLS, or
+% 				FOUNTAINS are used
+%----------------------------------------------------------------------------
+/@E
+{
+  /Bbury xd /Bburx xd      		% upper rt. of object's bbox in absolute space
+ /Bblly xd /Bbllx xd      		% lower lt. of object's bbox in absolute space
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	@c
+% Stack:
+% Desc: 	Close sub Path
+%					Must be called during the path description
+%----------------------------------------------------------------------------
+/@c
+{
+ @cp
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	@P
+% Stack: 	parm1 .. parmn n nColor fillname @P -
+% Desc: 	PostScript fill
+%----------------------------------------------------------------------------
+/@P
+{       											% COREL Postscript fill # of parms can vary
+ /$fil 3 def        					% set global for filling
+ /$Psn xd     								% PS-fill name
+ /$Psc xd											% 0 - black only, 1 - color
+ array astore      						% build array for PS-fill parms
+ /$Prm xd     								% parms in Prm
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	tcc
+% Stack: 	- tcc -
+% Desc:
+%----------------------------------------------------------------------------
+/tcc {@cc} def 								% no bind def because @cc redefn'
+
+%----------------------------------------------------------------------------
+% Proc:		@B
+% Stack: 	- @B
+% Desc: 	stroke, then fill
+%----------------------------------------------------------------------------
+/@B
+{
+ @gs S   @gr         					% stroke
+ F              							% fill
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		@b
+% Stack: 	- @b -
+% Desc: 	closepath, stroke & fill path
+%----------------------------------------------------------------------------
+/@b
+{
+ @cp @B
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		init_separation
+% Stack: 	--> init_separation -->
+% Desc: 	initialize global color separation parameters
+%
+%       	SeparationMode defines the current mode for color separation :
+%						/Composite - no color separation
+%           /OnHost - colors are separated in the application ( on host )
+%           /InRip - colors are separated in the RIP
+%
+%       	SeparationPlateName - string defining the current color plane being
+%  					printed.  The possible values are (case sensitive, not to be
+%						translated); /Cyan, /Magenta, /Yellow, /Black or any spot color
+%						defined in the document; e.g. (Pantone 345)
+%
+%					SeparationPlateIndex - index of separation plate, -1 - not defined,
+%					0 - Cyan,	1 - Magenta, 2 - Yellow, 3 - Black, 4 - any spot
+%
+%----------------------------------------------------------------------------
+/init_separation
+{
+	% inherit separation parameters from parent document if embedded as EPS
+	/SeparationMode where
+	{
+		pop
+	}
+	{
+		/SeparationMode /Composite def
+	} ifelse
+
+
+	/SeparationPlateName where
+	{
+		pop
+	}
+	{
+		/SeparationPlateName null def
+	} ifelse
+
+	/SeparateInColor where
+	{
+		pop
+	}
+	{
+		/SeparateInColor false def
+	} ifelse
+
+	SeparationMode /Composite eq
+	{
+		/SeparationPlateIndex -1 def
+	}
+	{
+		/SeparationPlateIndex 4 def
+	} ifelse
+
+	/CmykPlates [ /Cyan /Magenta /Yellow /Black ] def
+
+	0 1 3
+	{
+		dup
+		CmykPlates exch get SeparationPlateName eq
+		{
+			/SeparationPlateIndex xd
+			exit
+		} if
+		pop
+	} for
+
+	% init legacy separation parameters used for separation of pre-X5
+	% generated embedded EPS documents
+
+	/CurrentInkName_5 SeparationPlateName def
+
+	/$ink_5 SeparationPlateIndex def
+
+	SeparationMode /OnHost eq
+	{
+		/SepMode_5 2 def
+	}
+	{
+		/SepMode_5 0 def
+	} ifelse
+
+	/SepsColor SeparateInColor def	
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		init_separation_from_legacy
+% Stack: 	- init_separation_from_legacy -
+% Desc: 	inits separation from legacy pre-X5 separation parameters
+%----------------------------------------------------------------------------
+/init_separation_from_legacy
+{
+	EpsFile
+	{
+		/SepMode_5 where
+		{
+			pop
+			SepMode_5 2 eq
+			{
+				/SeparationMode /OnHost def
+			}
+			{
+
+				/SeparationMode /Composite def
+			}
+			ifelse
+		} if
+		
+		/CurrentInkName_5 where
+		{
+			pop
+			/SeparationPlateName CurrentInkName_5 def
+		} if
+		
+		/$ink_5 where
+		{	pop
+			/SeparationPlateIndex $ink_5 def
+		} if
+		
+		/SepsColor where
+		{
+			pop
+			/SeparateInColor SepsColor def
+		} if
+	} if
+} bd
+
+init_separation_from_legacy
+
+%----------------------------------------------------------------------------
+% Proc:		@whi
+% Stack: 	- @whi -
+% Desc: 	Fill Page white
+%----------------------------------------------------------------------------
+/@whi
+{
+ @gs
+ -72000 dup m
+ -72000 72000 l
+ 72000 dup l
+ 72000 -72000 l
+ @cp 1 SetGry fill
+ @gr
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		@neg
+% Stack: 	- @neg -
+% Desc: 	MAKE ALL COLORS NEGATIVE
+% 				Only set the GRAY scale transfer function since WALDO only
+% 				uses negative for color separations.
+%----------------------------------------------------------------------------
+/@neg
+{  [{1 exch sub} /exec cvx currenttransfer /exec cvx] cvx settransfer
+ @whi          								% fill page in white (Will be turned into white)
+} bd
+
+%----------------------------------------------------------------------------
+% ------------------------- AX system --------------------------------------
+%----------------------------------------------------------------------------
+/deflevel 0 def								% global
+
+%----------------------------------------------------------------------------
+% Proc:		@sax
+% Stack: 	- @sax -
+% Desc: 	start an excution array
+% NOTE:		an array should be started IMMEDITAELY AFTER @sax
+%         each @sax requires a following @eax
+%----------------------------------------------------------------------------
+/@sax
+{
+  /deflevel deflevel 1 add def
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		@eax
+% Stack: 	[ex array] @eax -
+%         or
+%         [ ... [ex array] @eax [ ... [ex array] {ex array code}
+% Desc: 	end and possibly execute an execution array
+%         This will either load array execution code or execute the
+%         array depending on the level (as set by @sax).
+%         EACH @eax needs a preceding @sax
+%----------------------------------------------------------------------------
+/@eax
+{
+ % decrement deflevel but NEVER below 0.
+ /deflevel deflevel dup 0 gt {1 sub} if def
+ deflevel 0 gt
+ {
+  /eax load       						% push eax code onto stack for later execution
+ }
+ {
+  eax       									% execute the array on the stack NOW
+ }
+ ifelse
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		eax
+% Stack: 	[ex array] eax -
+% Desc: 	execute an execution array
+% NOTE:		This should only be called by @eax. DO NOT DIRECTLY
+%         CALL THIS ROUTINE!
+%----------------------------------------------------------------------------
+/eax
+{
+ {exec} forall
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		@rax
+% Stack:
+% Desc:
+%----------------------------------------------------------------------------
+/@rax
+{
+ deflevel 0 eq
+ {
+  @rs @sv
+ }
+ if
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		pdfmark
+% Stack: 	[ .... pdfmark
+% Desc:
+%----------------------------------------------------------------------------
+systemdict /pdfmark known not
+{
+ /pdfmark /cleartomark ld
+} if
+
+%----------------------------------------------------------------------------
+% Proc: 	wclip
+% Stack: 	- wclip -
+% Desc: 	sets the type of clipping to use (clip or eoclip)
+%         depending on the clipping mode (winding or even-odd).
+%----------------------------------------------------------------------------
+/wclip
+{
+ 1 $fm eq						% fillmode
+ {
+  clip							% normal non-zero winding number rule
+ }
+ {
+  eoclip						% even-odd rule
+ } ifelse
+} bd
+%----------------------------------------------------------------------------
+% Raster images support
+%----------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------
+% Proc: 	set_image_clipping
+% Stack: 	cropllx croplly cropurx cropury matrix --> set_image_clipping -->
+% Desc: 	set clipping path for image
+%----------------------------------------------------------------------------
+/set_image_clipping
+{
+ concat      									% integrate transfo right away
+ 3 index 3 index m        		% set clipping path(cropping rect)
+ 3 index 1 index l
+ 2 copy l
+ 1 index 3 index l
+ 3 index 3 index l
+ clip         								% this is the clipping path
+ pop pop pop pop							% pop cropping rect
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	set_image_parameters
+% Stack: 	pxlwid pxlhei bits llx lly urx ury background foreground
+%         		 ---> set_image_parameters -->
+% Desc: 	sets image parameters from stack
+%----------------------------------------------------------------------------
+/set_image_parameters
+{
+	/$frg xd /$bkg xd						% foreground/background flags
+	/$ury xd /$urx xd
+	/$lly xd /$llx xd          	% bitmap rectangle
+	/$ncl xd           					% # of color components
+	/$bts xd           					% # of bits per color component
+	/$hei xd /$wid xd           % pixel size
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		output_image
+%
+% Stack: 	pxlwid pxlhei bits bitplanes
+%         		llx lly urx ury backgroundflag foregroundflag
+%         		cropllx croplly cropurx cropury matrix
+%        		dataproc --> output_image -->
+%
+% Desc: 	output bitmap image
+%
+% Parms:  pxlwid pxlhei 	size of bitmap in pixels
+%         bits 				# of bits per sample
+%         bitplanes  		# of color planes
+%         llx lly urx ury 	total size of bitmap(before transfos)
+%         backgroundflag
+%						1: fill background with current fill,
+%           0: transparent background (only for monochrome/grayscale bitmaps)
+%         foregroundflag :
+%						1: mask background with current stroke,
+%           0: transparent background (only for monochrome/grayscale bitmaps)
+%         cropllx croplly cropurx cropury: cropping rect (before transfos)
+%         matrix 			 additional transfo matrix for stretching/rotating, etc..
+%         dataproc :		data acquisition procedure
+%
+%       	Note:  pxlhei < 0 prints bitmap UPSIDE down
+%
+%----------------------------------------------------------------------------
+/output_image
+{
+ /@cc xd											% store data aquisition procedure
+
+	@sm @gs     								% save current ctm and graphics state
+	set_image_clipping          % set CTM and clipping
+
+	set_image_parameters				% store image parameters from stack
+
+	SeparationMode /OnHost eq EpsFile and
+	{
+		separate_output_image
+	}
+	{
+		output_composite_image
+	} ifelse
+
+	@gr $ctm setmatrix          % Restore graphics state & org matrix
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		output_composite_image
+% Stack: 	--> output_composite_image -->
+% Desc: 		output bitmap image in composite mode
+%----------------------------------------------------------------------------
+/output_composite_image
+{
+	DocPsLevel 3 eq							% Using Level 3
+	MaskedImage true eq	and
+	{
+		output_masked_image   		% call level 3 masked images code
+	}
+	{
+	 $bts 1 gt              		% grayscale or color?
+	 DocPsLevel 2 eq						% and using level 2 or 3?
+	 DocPsLevel 3 eq or
+	 and
+	 {
+		DevicenImage							% check if DeviceN image
+		{
+			output_devicen_image   	% output DeviceN image to Level2 and 3
+		}
+		{
+			output_color_image			% call level 2 color bitmap code
+		}ifelse
+	 }
+	 {													% level 1 or monochrome?
+		$bts 1 eq    							% check for 1 bitplane (monochrome)
+		{
+		 output_monochrome_image
+		}
+		{
+		 output_color_image_level1	% call level 1 bitmap code
+		} ifelse
+	 } ifelse
+  } ifelse
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		separate_output_image
+% Stack: 	--> separate_output_image -->
+% Desc: 		separates image according to global separation parameters then outputs it
+%----------------------------------------------------------------------------
+/separate_output_image
+{
+	@gs
+	$bts 1 gt
+	{
+		separate_output_color_image
+	}
+	{
+		separate_output_monochrome_image
+	} ifelse
+	@gr
+
+	not	% if not separated to current plate, check if we need to knock image out
+	{
+		currentoverprint not
+		{
+			% knock out image by painting white rectangle
+			1.0 SetGry
+			wfill
+		} if
+	} if
+
+	@np
+} bd
+
+%----------------------------------------------------------------------------
+% Stack: 	file --> set_decode_filter --> file
+% Params:	file - current file object with installed filter chain on top
+% Desc: 	installs image data decode filter on top of filter chain
+%----------------------------------------------------------------------------
+/set_decode_filter
+{
+	ImageCompression /JPEG eq				% JPEG compression
+	{
+		/DCTDecode filter
+	}
+	{
+		ImageCompression /RLE eq			% RunLengthDecode filter
+		{
+			/RunLengthDecode filter
+		}
+		{
+			ImageCompression /LZW eq		% LZWDecode filter
+			{
+				/LZWDecode filter
+			}if
+		} ifelse
+	} ifelse
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	create_datasource
+% Stack: 	--> create_datasource --> file
+%	Params:	file - current file object with installed filter chain on top
+% Desc: 	creates image datasource as current file with edecoding filters chain
+%----------------------------------------------------------------------------
+/create_datasource
+{
+	currentfile
+	
+	DevicenImage not get_ps_level 2 gt or
+	{	/ASCII85Decode filter
+	}if
+
+	set_decode_filter
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 		set_image_strip_parameters
+% Stack: 	numPlanes stripRows --> set_image_strip_parameters  -->
+% Params:	numPlanes - number of planes to output image strip to
+%				stripRows - number of image rows in single strip
+% Desc: 		sets parameters for outputing image strip
+%----------------------------------------------------------------------------
+/set_image_strip_parameters
+{
+	/stripRows xd
+	/numPlanes xd
+
+	/stripBuffer										% buffer for strip data
+		$wid $bts
+		mul $ncl mul
+		stripRows mul
+		8 div
+		ceiling cvi
+		dup 65535 gt
+		{
+			pop $ncl $bts mul 
+		}if
+		string
+
+	def
+
+	DevicenImage
+	{
+		/readstrip
+		{
+			DataSource stripBuffer readhexstring pop
+		} bd
+	}
+	{
+		/readstrip
+		{
+			DataSource stripBuffer readstring pop
+		} bd
+	}ifelse
+
+	/stripHeight																% height of image strip
+		$lly $ury sub stripRows mul $hei div
+	def
+
+	/stripOutBuffer															% buffer for strip data converted for output
+		$wid stripRows mul numPlanes mul 65535 min string
+	def
+
+	/strip_img_dict 8 dict def
+	strip_img_dict begin
+		/ImageType 1 def													% image type - there's only 1
+		/Width $wid def														% source width
+ 		/Height stripRows def         						% source height
+		/BitsPerComponent $bts def 								% bits per sample
+ 		/Decode
+			[numPlanes {0 1} repeat] def						% decode output strip data
+		/ImageMatrix 															% map unit square to source
+			[ $wid 0 0 stripRows neg 0
+				$hei 0 gt	{stripRows}{0}	ifelse			% matrix( upside down if $hei is negative )
+			]
+		def
+ 		/DataSource stripOutBuffer def						%	data source decode the entire bitmap
+	end
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		separate_output_color_image
+% Stack: 	--> separate_output_color_image --> separated
+%				separated - true if image has been separated to current plate
+% Desc: 		separates color or grayscale image according to global
+%				separation parameters and then outputs it
+%----------------------------------------------------------------------------
+/separate_output_color_image
+{
+	/plateContent false def
+	$ncl 1 eq
+	{
+		% grayscale image, separate to Black plate
+		SeparationPlateName /Black eq
+		{
+			% output monochrome image to Black plate
+			output_color_image
+			/plateContent true def
+		} if
+	}
+	{
+		% separate DeviceN, CMYK or RGB image
+		@np          									% no path but clipping
+
+		/DataSource create_datasource def
+
+		SeparateInColor
+		{
+			DocCmykSpace setcolorspace 			% CMYK colorspace for painting separation plates in color
+			/numPlanes 4 def
+		}
+		{
+			DocGrayScaleSpace setcolorspace % grayscale for default painting separation plates in black
+			/numPlanes 1 def
+		} ifelse
+
+		% claculate strip size  ( in image rows )  to fit PostScript string length limit of 65535
+		/stripRows 65535 $wid $bts mul $ncl numPlanes max mul 8 div div floor cvi 1 max def
+
+		numPlanes stripRows set_image_strip_parameters
+
+		/maxStripIndex $hei stripRows div ceiling cvi 1 sub def
+
+		0 1 maxStripIndex 					% iterate through strips
+		{
+			/stripIndex exch def			% save buffer index
+
+			/$t_ury										% calculate rectangle for strip image
+				$ury stripHeight stripIndex mul add ceiling cvi
+			def
+
+			/$t_lly											% calculate rectangle for strip image
+				$t_ury stripHeight add ceiling cvi
+			def
+
+			stripIndex maxStripIndex eq % last strip, adjust strip size to fit all data that remains
+			{
+				numPlanes $hei maxStripIndex stripRows mul sub set_image_strip_parameters
+
+				/$t_lly										% adjust strip image rectangle
+					$t_ury stripHeight add ceiling cvi
+				def
+			} if
+
+			readstrip pop								% read image data from the file
+
+			@gs
+
+			% separate color for each image pixel
+			0 1 $wid stripRows mul 1 sub
+			{
+				/pixelIndex xd
+
+				stripBuffer pixelIndex $ncl mul $ncl getinterval			% get color values array for single pixel from image strip
+
+				{ 255 div } forall																		% image colors are 0..255 encoded, convert to 0.0..1.0
+
+				% convert pixel color
+				DevicenImage
+				{
+						ImageDevicenSpace create_devicen_color
+				}
+				{
+					$ncl 3 eq
+					{
+						create_rgb_color
+					}
+					{
+						create_cmyk_color
+					} ifelse
+				} ifelse
+
+				/separate_color dexec
+
+				{	% check if color has been separated to the current plate
+					/plateContent true def
+					% extract color values from colorspec
+					begin
+						color aload pop
+					end
+				}
+				{
+					pop numPlanes [ numPlanes 1 eq {1}{0}ifelse ] cvx repeat
+				} ifelse
+
+
+				numPlanes array astore																% pack alt colors value into array
+
+				/pixelSepIndex pixelIndex numPlanes mul def
+
+				/posColorant 0 def
+				{
+				 stripOutBuffer pixelSepIndex posColorant add 3 -1 roll 255 mul cvi put
+				 /posColorant posColorant 1 add def										% put alt color values into separated strip buffer
+				} forall
+			} for
+
+			$llx $t_lly Tl								% translate gstate origin
+			$urx $llx sub
+			$t_ury $t_lly sub scale				% set current scale for bitmap size
+
+			strip_img_dict								% scanline image dictionary
+			image													% draw image
+
+			@gr
+		}for
+
+	  $SDF {$dsf $dsa $dsp @ss}if  		% reset default halftone screen
+	} ifelse
+
+	plateContent											% leave separation flag on stack
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		separate_output_monochrome_image
+% Stack: 	--> separate_output_monochrome_image --> separated
+%				separated - true if image has been separated to current plate
+% Desc: 		separates monochrome image according to global
+%				separation parameters and then outputs it
+%----------------------------------------------------------------------------
+/separate_output_monochrome_image
+{
+	SeparationPlateName /Black eq
+	{
+		% output monochrome image to Black plate
+		output_monochrome_image true
+	}
+	{
+		false
+	} ifelse
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	output_monochrome_image
+% Stack:  --> output_monochrome_image -->
+% Desc: 	Outputs Grayscale/Mono bitmap
+%----------------------------------------------------------------------------
+/output_monochrome_image
+{
+	$frg 1 eq                 			% Check if foreground flag is set.
+	{
+		OutlineOverprint safe_setoverprint
+		ImageForegroundColor /separate_set_color dexec		% Set foreground color
+		{1}{0}ifelse
+		/$frg xd
+	}
+	{
+		/$frg false def
+	} ifelse
+
+	$bkg 1 eq                 % Check if background flag is set.
+	{                      		% Not set for bitmap fill.
+	 @gs $ctm setmatrix
+	 F
+	 @gr
+	} if
+
+	@np          								% no path but clipping
+
+	/$dat $wid $bts mul 8 div ceiling cvi 65535 min string def    % string for data entry (each scan line)
+
+	$bkg $frg add 1 ge
+	{
+		$SDF {$SCF $SCA $SCP @ss}if % alternate halftone screen? (determined by stroke attribs)
+																% set params for the imagemask/image operator
+		$llx $lly Tl
+		$urx $llx sub $ury $lly sub scale
+
+		% For monochrome bitmaps, the foreground colour is currently set.
+		$bkg 1 eq
+		{
+		 FillColor /separate_set_color dexec pop
+		} if
+
+		$wid $hei abs          			% if height is negative, print it upside down
+		$bts 1 eq
+		{$bkg 1 ge }
+		{$bts 1 ge }
+		ifelse 											% either false or #bits/sample
+		[ $wid 0 0
+			$hei neg 0
+			$hei 0 gt{$hei}{0}ifelse] % matrix(upside down if $hei is negative)
+		/tcc load             			% @cc can be redefined
+		$bts 1 eq
+		{imagemask}
+		{image}
+		ifelse
+
+		$SDF {$dsf $dsa $dsp @ss}if % reset default halftone screen
+	}
+	{
+		$hei abs {tcc pop} repeat   % skip all lines
+	} ifelse
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 		output_color_image_level1
+% Stack: 	--> output_color_image_level1 -->
+% Desc: 		Outputs color bitmap on level 1 device
+%----------------------------------------------------------------------------
+/output_color_image_level1
+{
+	@np          								     % no path but clipping
+	$ngx    											   % set screening function
+
+	$llx $lly Tl
+	$urx $llx sub
+	$ury $lly sub scale              % set current scale for bitmap size
+																	 % set parameters on stack for colorimage call:
+	$wid $hei abs $bts        		   % width height #bits matrix
+	[ $wid 0 0
+	 $hei neg 0
+	 $hei 0 gt{$hei}{0}ifelse        % matrix(upside down if $hei is negative)
+	]
+
+	/$dat $wid $bts mul $ncl mul
+	8 div ceiling cvi 65535 min string def     % string for data entry (each scan line)
+
+	$msimage false eq
+	$ncl 1 eq or
+	{                                % single-stream colorimage or grayscale
+	 /@cc load
+	 false $ncl
+	 ColorImage              			   % colorimage redefined.
+	}
+	{                                % set parameters for multi-stream colorimage
+	 $wid $bts mul 8 div ceiling cvi % calculate length of string
+	 $ncl 3 eq
+	 {                               % RGB colorimage
+		 dup dup
+		 /$dat1 exch string def        % string for data entry, Red component.
+		 /$dat2 exch string def        % string for data entry, Green component.
+		 /$dat3 exch string def        % string for data entry, Blue component.
+		 /@cc1 load
+		 /@cc2 load
+		 /@cc3 load
+	 }
+	 {                               % CMYK colorimage
+		 dup dup dup
+		 /$dat1 exch string def        % string for data entry, Cyan component.
+		 /$dat2 exch string def        % string for data entry, Magenta component.
+		 /$dat3 exch string def        % string for data entry, Yellow component.
+		 /$dat4 exch string def        % string for data entry, Black component.
+		 /@cc1 load
+		 /@cc2 load
+		 /@cc3 load
+		 /@cc4 load
+	 } ifelse
+	 true $ncl ColorImage
+	} ifelse
+
+	$SDF {$dsf $dsa $dsp @ss} if      % reset default halftone screen
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	@cc1
+% Stack: 	- @cc1 string
+% Desc: 	collect bitmap data from currentfile (input)
+%----------------------------------------------------------------------------
+/@cc1
+{
+ currentfile $dat1 readhexstring pop
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	@cc2
+% Stack: 	- @cc2 string
+% Desc: 	collect bitmap data from currentfile (input)
+%----------------------------------------------------------------------------
+/@cc2
+{
+ currentfile $dat2 readhexstring pop
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	@cc3
+% Stack: 	- @cc3 string
+% Desc: 	collect bitmap data from currentfile (input)
+%----------------------------------------------------------------------------
+/@cc3
+{
+ currentfile $dat3 readhexstring pop
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	@cc4
+% Stack: 	- @cc4 string
+% Desc: 	collect bitmap data from currentfile (input)
+%----------------------------------------------------------------------------
+/@cc4
+{
+ currentfile $dat4 readhexstring pop
+} bd
+
+%----------------------------------------------------------------------------
+% Multi-Stream Image ($msimage)
+% sets the default value for the $msimage operator.
+%
+% false : the image contains one data stream
+% true  : the image data is specified in multi-stream input
+%----------------------------------------------------------------------------
+/$msimage false def
+
+%----------------------------------------------------------------------------
+% sets the default value for the compression method, by default
+% we do NOT use any filters,
+%
+% 0 : no compression is set
+% 1 : indicates a JPEG compression filter
+% 2 : a Run Length Encoding filter
+% 3 : LZW compression filter
+%----------------------------------------------------------------------------
+/ImageCompression /None def
+/MaskedImage false def
+
+/DevicenImage false def
+
+%----------------------------------------------------------------------------
+% Proc: 		output_color_image
+% Stack: 	--> output_color_image -->
+% Desc: 		Output color bitmap using Level 2 image dictionary
+%----------------------------------------------------------------------------
+/output_color_image
+{
+	@np          									% no path but clipping
+
+	$ncl 1 eq											% set device color space
+	{DocGrayScaleSpace}						%	use document's grayscale colorspace
+	{
+		$ncl 3 eq
+		{DocRgbSpace}								%	use document's RGB colorspace
+		{DocCmykSpace}							%	use document's CMYK colorspace
+		ifelse
+	} ifelse
+	setcolorspace
+
+	/$dat $wid $bts mul $ncl mul
+	8 div ceiling cvi 65535 min string def 	% string for data entry (each scan line)
+
+	$ngx    											% set screening function
+
+	$llx $lly Tl									% translate gstate origin
+	$urx $llx sub $ury $lly sub scale  % set current scale for bitmap size
+
+	8 dict begin                 	% start a Level 2 image dictionary
+		/ImageType 1 def            % required: image type - there's only 1
+		/Width $wid def							%	required: source width
+		/Height $hei abs def        % required: source height
+		/BitsPerComponent $bts def 	%	required: bits per sample
+		/Decode                     % required: decode array (to follow)
+			[ $ncl { 0 1 } repeat ]		% create decode array for DeviceN image
+		def
+		/ImageMatrix 								% required: map unit square to source
+			[ $wid 0 0 $hei neg 0
+				$hei 0 gt	{$hei}{0}	ifelse
+			]
+		def                      		% matrix(upside down if $hei is negative)
+		/DataSource create_datasource def
+	currentdict end              	% end image dictionary
+	image			              			% call the image operator
+	$SDF {$dsf $dsa $dsp @ss}if  	% reset default halftone screen
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 		simulate_devicen_image
+% Stack: 	--> simulate_devicen_image -->
+% Desc: 		simulating DeviceN image on Level 2 device by overprinting n  single-channel images
+% Notes:		as there is not enough memory to hold whole image we output image strip by strips
+%----------------------------------------------------------------------------
+/simulate_devicen_image
+{
+	@np          										% no path but clipping
+	$ngx    												% set screening function
+
+	/colorantNames	ImageDevicenSpace 1 get def		% get DeviceN colorants name
+	/altColorSpace ImageDevicenSpace 2 get	def		% get DeviceN alternative colorspace
+	/tintProc ImageDevicenSpace 3 get def					% get tint procedure to convert from DeviceN to alt colorspace
+
+	/DataSource create_datasource def
+
+	% claculate strip size  ( in image rows )  to fit PostScript string length limit of 65535
+	/stripRows 65535 $wid $bts mul $ncl mul 8 div div floor cvi 1 max def
+
+	1 stripRows set_image_strip_parameters
+
+	/maxStripIndex $hei stripRows div ceiling cvi 1 sub def
+
+	0 1 maxStripIndex						% iterate through strips
+	{
+		/stripIndex exch def			% save buffer index
+
+		/$t_ury										% calculate rectangle for strip image
+			$ury stripHeight stripIndex mul add ceiling cvi
+		def
+
+		/$t_lly										% calculate rectangle for strip image
+			$t_ury stripHeight add ceiling cvi
+		def
+
+		stripIndex maxStripIndex eq % last strip, adjust strip size to fit all data that remains
+		{
+			1 $hei maxStripIndex stripRows mul sub set_image_strip_parameters
+
+			/$t_lly										% adjust strip image rectangle
+				$t_ury stripHeight add ceiling cvi
+			def
+		} if
+
+		readstrip pop							% read image data from the file
+
+		% simulate DeviceN output by overprinting n single channel images
+		@gs
+
+		$llx $t_lly Tl					% translate gstate origin
+		$urx $llx sub
+		$t_ury $t_lly sub
+		scale										% set current scale for bitmap size
+
+		0 1 $ncl 1 sub						% iterate through DeviceN plates
+		{
+			@gs
+			/inkIndex exch def			% save current DeviceN plate index
+
+			0 1 stripOutBuffer length 1 sub
+			{
+				dup
+				$ncl mul inkIndex add stripBuffer exch get
+				stripOutBuffer 3 1 roll put
+			}for
+
+			[ /Separation colorantNames inkIndex  get altColorSpace
+				{																					% construct one channel tint transform function
+					$ncl 1 sub {0} repeat										% convert single colorant color into n-channel DeviceN color
+					$ncl inkIndex roll
+					tintProc																% convert DeviceN color into alternative colorspace
+				}
+			] setcolorspace
+
+			inkIndex 0 gt
+			{
+				true setoverprint
+			} if
+
+			strip_img_dict image		% draw single scanline image
+
+			@gr			              	% restore graphics state
+		}for
+		@gr
+	}for
+
+  $SDF {$dsf $dsa $dsp @ss}if  				% reset default halftone screen
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 		output_devicen_image_alt
+% Stack: 	--> output_devicen_image_alt -->
+% Desc: 		outputing DeviceN image to Level 2 device in alternative colorspace
+%----------------------------------------------------------------------------
+/output_devicen_image_alt
+{
+	@np          										% no path but clipping
+	$ngx    												% set screening function
+
+	/colorantNames	ImageDevicenSpace 1 get def		% get DeviceN colorants name
+	/altColorSpace ImageDevicenSpace 2 get	def		% get DeviceN alternative colorspace
+	/tintProc ImageDevicenSpace 3 get def					% get tint procedure to convert from DeviceN to alt colorspace
+
+	% determine how many colorants are in alternative colorspace
+	altColorSpace DocCmykSpace eq
+	{
+		/numAltChannels 4 def
+	}
+	{
+		altColorSpace DocRgbSpace eq
+		{
+			/numAltChannels 3 def
+		}
+		{
+			/numAltChannels 1 def
+		} ifelse
+	}ifelse
+
+	/DataSource create_datasource def
+	
+	altColorSpace setcolorspace			% use alternative colorspace
+
+	% claculate strip size  ( in image rows )  to fit PostScript string length limit of 65535
+	/stripRows 65535 $wid $bts mul $ncl numAltChannels max mul 8 div div floor cvi 1 max def
+
+	numAltChannels stripRows set_image_strip_parameters
+
+	/maxStripIndex $hei stripRows div ceiling cvi 1 sub def
+
+	0 1 maxStripIndex 							% iterate through strips
+	{
+		/stripIndex exch def			% save buffer index
+
+		/$t_ury										% calculate rectangle for strip image
+			$ury stripHeight stripIndex mul add ceiling cvi
+		def
+
+		/$t_lly										% calculate rectangle for strip image
+			$t_ury stripHeight add ceiling cvi
+		def
+
+		stripIndex maxStripIndex eq % last strip, adjust strip size to fit all data that remains
+		{
+			numAltChannels $hei maxStripIndex stripRows mul sub set_image_strip_parameters
+
+			/$t_lly										% adjust strip image rectangle
+				$t_ury stripHeight add ceiling cvi
+			def
+		} if
+
+		readstrip pop							% read image data from the file
+
+		@gs
+
+		% output DeviceN image in alternative colorspace
+		0 1 stripBuffer length $ncl div cvi 1 sub
+		{
+			/pixelIndex xd
+
+			stripBuffer pixelIndex $ncl mul $ncl getinterval			% get DeviceN color values array for single pixel from image scanline
+
+			{ 255 div } forall																		% image colors are 0..255 encoded, convert to 0.0..1.0
+
+			tintProc exec																					% convert DeviceN 0.0..1.0 encoded color values to alt colorspace
+
+			numAltChannels array astore														% pack alt colors value into array
+
+			/pixelAltIndex pixelIndex numAltChannels mul def
+
+			/posColorant 0 def
+			{
+			 stripOutBuffer pixelAltIndex posColorant add 3 -1 roll 255 mul cvi put
+			 /posColorant posColorant 1 add def										% put alt color values into alt colorspace scanline
+			} forall
+		} for
+
+		$llx $t_lly Tl								% translate gstate origin
+		$urx $llx sub
+		$t_ury $t_lly sub scale				% set current scale for bitmap size
+
+		strip_img_dict								% scanline image dictionary
+		image													% draw image
+
+		@gr
+	}for
+
+  $SDF {$dsf $dsa $dsp @ss}if  				% reset default halftone screen
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 		output_devicen_image_native
+% Stack: 	--> output_devicen_image_native -->
+% Desc: 		Output DeviceN image natively in Level3
+%----------------------------------------------------------------------------
+/output_devicen_image_native
+{
+	@np          											% no path but clipping
+	$ngx    													% set screening function
+
+	ImageDevicenSpace setcolorspace		% set DeviceN colorspace
+
+	/scanline
+		$wid $bts
+		mul $ncl mul
+		8 div
+		ceiling cvi 65535 min string
+	def 															% string for scanline data
+
+	/readscanline
+	{
+		currentfile	scanline readhexstring pop
+	} bind def
+
+	$llx $lly Tl											% translate gstate origin
+	$urx $llx sub $ury $lly sub scale % set current scale for bitmap size
+
+	8 dict begin                 			% start a Level 2 image dictionary
+		/ImageType 1 def             		% image type - there's only 1
+		/Width $wid def									%	source width
+		/Height $hei abs def         		% source height
+		/BitsPerComponent $bts def 			%	bits per sample
+		/Decode                     		% decode array (to follow)
+			[ $ncl { 0 1 } repeat ]				% create decode array for DeviceN image
+		def
+		/ImageMatrix 										% required: map unit square to source
+		[ $wid 0 0 $hei neg 0
+				$hei 0 gt	{$hei}{0}	ifelse
+		]	def                      			% matrix(upside down if $hei is negative)
+		/DataSource											%	required: data source decode the entire bitmap
+		{
+			readscanline
+		} def
+	currentdict end              			% end image dictionary
+
+	image			              					% call the image operator
+
+  $SDF {$dsf $dsa $dsp @ss}if  			% reset default halftone screen
+} bd
+
+
+%----------------------------------------------------------------------------
+% Proc: 	output_devicen_image
+%
+% Stack: 	pxlwid pxlhei bits ncolors llx lly urx ury cropllx croplly
+%					cropurx cropury	matrix --> output_devicen_image -->
+%
+% Desc: 	Output DeviceN image
+%
+% Parms: 	colorspace				DeviceN image colorspace
+%					pxlwid pxlhei 		size of bitmap in pixels
+%         bits 							bits per component
+%         ncolors 					color components (RGB=3, CMYK=4)
+%         llx lly urx ury 	size of bitmap (before transfos)
+%         cropllx croplly cropurx cropury: cropping rectangle (before transfos)
+%         matrix: 					transfo matrix for stretching/rotating, etc..
+%					Note :	Level 3 device - image will be output in native DeviceN colorspace
+%									Level 2 Distiller or in-RIP separation - image will be output as
+%									series of N overprinted bitmaps ( scanline by scanline )
+%									Level 2 composite - image will be output in alternative colorspace
+%
+%----------------------------------------------------------------------------
+/output_devicen_image
+{
+	Level3
+	{
+		output_devicen_image_native
+	}
+	{
+		get_simulate_devicen
+		{
+			simulate_devicen_image
+		}
+		{
+			output_devicen_image_alt
+		} ifelse
+	} ifelse
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	output_masked_image
+%
+% Stack: 	pxlwid pxlhei bits ncolors llx lly urx ury cropllx croplly
+%					cropurx cropury	matrix output_masked_image -
+%
+% Desc: 	Output level 3 color bitmap with mask
+%
+% Parms: 	pxlwid 	:
+%					pxlhei	: size of bitmap in pixels
+%         bits		: bits per component
+%         ncolors	: color components (RGB=3, CMYK=4)
+%         llx lly urx ury: 	size of bitmap (before transfos)
+%         cropllx croplly cropurx cropury: cropping rectangle (before transfos)
+%         matrix	: transfo matrix for stretching/rotating, etc.
+%
+%----------------------------------------------------------------------------
+/output_masked_image
+{
+	/$dat $wid $bts mul $ncl mul
+	8 div ceiling cvi 65535 min string def 	% string for data entry (each scan line)
+	$ngx    											% set screening function
+
+	DevicenImage									% DeviceN image
+	{
+		ImageDevicenSpace
+	}
+	{
+		$ncl 1 eq										% set device color space
+		{DocGrayScaleSpace}         %	use document's grayscale colorspace
+		{
+			$ncl 3 eq
+			{DocRgbSpace}             %	use document's RGB colorspace
+			{DocCmykSpace}            %	use document's CMYK colorspace
+			ifelse
+		} ifelse
+	} ifelse
+	setcolorspace
+
+	$llx $lly Tl									% translate gstate origin
+	$urx $llx sub
+	$ury $lly sub scale						% set current scale for bitmap size
+
+	/ImageDataDict 8 dict def			% start image data dictionary
+	ImageDataDict begin
+		/ImageType	1 def           % modified type 1 image dictionary
+		/Width			$wid def				%	required: source width
+		/Height			$hei abs def    % required: source height
+		/BitsPerComponent $bts def 	%	required: bits per sample
+		/Decode											% required: decode array (to follow)
+		[ $ncl { 0 1 } repeat ]
+		def
+
+		/ImageMatrix [ 							%	required: image matrix
+			$wid 0 0 $hei neg 0
+			$hei 0 gt{$hei}{0} ifelse %	matrix(upside down if $hei is negative)
+ 		] def
+
+		/DataSource create_datasource def
+	end                           % end image data dictionary
+
+	/MaskedImageDict 7 dict def   % start masked image dictionary
+	MaskedImageDict begin
+		/ImageType 3 def            % masked image
+		/InterleaveType 3 def       % mask and data appear in separate streams
+		/MaskDict ImageMaskDict def % dictionary to define mask
+		/DataDict ImageDataDict def % dictionary to define data
+	end
+
+  MaskedImageDict image					% do the image
+
+	$SDF {$dsf $dsa $dsp @ss}if  	% reset default halftone screen
+} bd
+
+%----------------------------------------------------------------------------
+% Proc: 	set_image_mask
+% Stack: 	pxlwid pxlhei bits set_image_mask -
+%
+% Desc: 	Level 3 set mask for masked images
+%
+% Parms: 	pxlwid 	:	Width of mask in pixels
+%					pxlhei	: Height of mask in pixels
+%         bits		: bits per mask component, must be 1 for InterleaveType 3
+%----------------------------------------------------------------------------
+/set_image_mask
+{
+	/$mbts xd           					% store # of bits for mask
+	/$mhei xd 										%	height of mask
+	/$mwid xd            					% width of mask
+
+	/ImageMaskDict 8 dict def
+	ImageMaskDict begin
+		/ImageType 1 def            % modified type 1 image dictionary
+		/Width		 $mwid def				%	required: source width
+		/Height		 $mhei abs def		% required: source height
+		/BitsPerComponent $mbts def %	required: bits per sample, must be 1 for InterleaveType 3
+
+		/DataSource maskstream def	%	required for InterleaveType 3: data source of the mask
+
+		/ImageMatrix [ 							%	required: image matrix
+			$mwid 0 0 $mhei neg 0
+			$mhei 0 gt
+			{$mhei}{0} ifelse					%	matrix(upside down if $hei is negative)
+ 		] def
+
+		/Decode [ 1 0 ] def         % required: mask 0 values.
+	end                           % end image mask dictionary
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		@daq
+% Stack: 	one or more <arrays of data strings | data strings> daq -
+% Desc: 	standard bitmap data acquistion routine
+% NOTE:		This assumes ONLY arrays of data strings or data
+%         strings are on the stack and that there are ENOUGH data
+%         strings (total) for the specified bitmap.
+%----------------------------------------------------------------------------
+/@daq
+{
+ dup type /arraytype eq   		% is this an array
+ {
+  aload pop          					% dump strings in array onto stack
+ }
+ if            								% otherwise, should be a string, so leave it
+} bd
+
+%----------------------------------------------------------------------------
+% Proc:		skip_image_body
+%
+% Stack: 	pxlwid pxlhei bits bitplanes
+%         llx lly urx ury backgroundflag foregroundflag
+%         cropllx croplly cropurx cropury matrix
+%         dataproc --> skip_image_body -->
+%
+% Desc: 	skip over image binary body leaving stack clean
+
+% NOTE:		This call should be followed by enable_raster_output call to restore
+%					output_image function
+%----------------------------------------------------------------------------
+/skip_image_body
+{
+	8 rp  					% get rid of parameters on stack we do not need
+	/$ury xd /$urx xd       % store the image rectangle
+	/$lly xd /$llx xd       % still storing the image rectangle
+	/$ncl xd           		% store # of color components
+	/$bts xd           		% store # of bits per color component
+	/$hei xd /$wid xd       % store pixel size
+
+	DevicenImage not
+	ImageCompression /JPEG eq or
+	ImageCompression /RLE eq or
+	ImageCompression /LZW eq or
+	{
+		create_datasource flushfile
+	}
+	{
+		/scanline			% define string to keep single string of image data
+			$wid $bts
+			mul $ncl mul
+			8 div
+			ceiling cvi
+			dup 65535 gt
+			{
+				pop $bts $ncl mul
+			}if
+			string
+		def
+
+		/upperBound $wid $hei mul $bts mul $ncl mul scanline length div cvi 1 sub def 
+		0 1 upperBound			% iterate through image using scanline buffer
+		{
+			pop
+			currentfile scanline readhexstring
+			pop pop				% discard whatever we read
+		}for
+	}ifelse
+}bd
+
+%----------------------------------------------------------------------------
+% Proc:		disable_raster_output
+%
+% Stack: 	--> disable_raster_output -->
+%
+% Desc: 	overload output_image procedure by skip_image_body procedure
+%					which skips image data
+%
+% NOTE:		This call should be followed by enable_raster_output call to restore
+%					output_image function
+%----------------------------------------------------------------------------
+/disable_raster_output
+{
+	deflevel 0 eq { @rs	} if
+		
+	/output_image load					% load current output_image function
+	/output_image_original exch	% and save it
+	def													% bind it there
+
+	/output_image /skip_image_body load def	% overload function
+	
+	globaldict begin /bSkipDeviceNImage true def end
+	
+	deflevel 0 eq { @sv	} if
+}def
+
+%----------------------------------------------------------------------------
+% Proc:		enable_raster_output
+% Stack: 	--> enable_raster_output -->
+% Desc: 	Function restores overloaded output_image function
+% NOTE:		This call should go after disable_raster_output call
+%----------------------------------------------------------------------------
+/enable_raster_output
+{
+	deflevel 0 eq { @rs	} if
+	
+	/bSkipDeviceNImage where		% check whether output_image has been overloaded
+	{
+		/bSkipDeviceNImage undef
+		
+		/output_image /output_image_original load def		% load original raster function and assign it to output_image
+	}if
+	
+	deflevel 0 eq { @sv	} if
+}def
+
+
+end
+%%EndResource
+%%EndProlog
+%%BeginSetup
+wCorel21Dict begin
+@BeginSysCorelDict
+/$dcm matrix currentmatrix def
+@ssa
+1.00 setflat
+/$fst 128 def
+%%EndSetup
+
+%%Page: 1 1
+%%ViewingOrientation: 1 0 0 1
+%%BoundingBox: 0 0 595 841
+%LogicalPage: 1
+%%BeginPageSetup
+@sv
+@sm
+@sv
+%%EndPageSetup
+@rax %Note: Object
+245.24957 653.46690 299.74479 699.88989 @E
+/$fm 0 def
+0 J 0 j 22.925585626053735 setmiterlimit
+[] 0 d 0 R 0 @G
+0.0000 1.0000 1.0000 0.0000  create_cmyk_color set_outline
+0 0.00992 0.00992 0.00000 @w
+276.57043 699.45534 m
+269.46340 698.40879 248.50403 688.53912 245.97950 680.91194 C
+243.63411 673.76098 247.32255 664.79924 251.65020 662.06494 C
+255.97786 659.33093 284.63613 650.54976 292.98529 654.45024 C
+299.29039 657.43483 301.11477 663.87685 298.74954 671.60976 C
+296.87443 678.61191 295.46957 683.92346 293.07883 690.45676 C
+290.53446 697.71317 285.88507 701.17455 276.57043 699.45534 C
+@c
+S
+
+@rax %Note: Object
+245.96504 596.57471 300.13852 643.68170 @E
+/$fm 0 def
+0 J 0 j 22.925585626053735 setmiterlimit
+[] 0 d 0 R 0 @G
+0.0000 1.0000 1.0000 0.0000  create_cmyk_color set_outline
+0 0.00992 0.00992 0.00000 @w
+286.50586 643.30753 m
+281.58038 641.73373 280.48167 637.67650 270.95244 633.80154 C
+260.40132 629.46850 247.81181 632.38110 246.22724 621.37276 C
+245.45565 616.82825 246.40072 613.68718 248.88898 611.71285 C
+252.86910 608.50630 259.53676 604.76145 264.54387 602.25250 C
+272.88227 597.75137 284.38838 591.50126 290.55090 603.61115 C
+292.49263 607.64995 291.70091 610.06762 292.47250 614.61213 C
+293.64293 622.02841 299.47294 626.46350 300.09657 631.97150 C
+300.75080 638.91893 293.63357 645.31417 286.50586 643.30753 C
+@c
+S
+
+@rax %Note: Object
+243.33562 651.12208 360.26476 702.07625 @E
+/$fm 0 def
+0 J 0 j 22.925585626053735 setmiterlimit
+[] 0 d 0 R 0 @G
+0.0000 0.0000 0.0000 1.0000  create_cmyk_color set_outline
+0 0.00992 0.00992 0.00000 @w
+270.76422 701.98809 m
+332.52491 702.07597 l
+346.42545 702.09553 360.26476 690.54350 360.26476 676.55509 c
+360.26476 676.55509 l
+360.26476 662.56668 346.52013 651.12208 332.62044 651.12208 c
+270.57657 651.12208 l
+256.67688 651.12208 243.33562 662.56668 243.33562 676.55509 c
+243.33562 676.55509 l
+243.33562 690.54350 256.86397 701.96854 270.76422 701.98809 c
+@c
+S
+
+@rax %Note: Object
+244.06894 595.35184 359.53427 645.06614 @E
+/$fm 0 def
+0 J 0 j 22.925585626053735 setmiterlimit
+[] 0 d 0 R 0 @G
+0.0000 0.0000 0.0000 1.0000  create_cmyk_color set_outline
+0 0.00992 0.00992 0.00000 @w
+271.15427 644.98025 m
+332.14167 645.06586 l
+345.86816 645.08513 359.53427 633.81402 359.53427 620.16605 c
+359.53427 620.16605 l
+359.53427 606.51808 345.96170 595.35184 332.23606 595.35184 c
+270.96888 595.35184 l
+257.24324 595.35184 244.06894 606.51808 244.06894 620.16605 c
+244.06894 620.16605 l
+244.06894 633.81402 257.42778 644.96098 271.15427 644.98025 c
+@c
+S
+
+@rax %Note: Object
+303.18094 596.45140 357.86778 643.61820 @E
+/$fm 0 def
+0 J 0 j 22.925585626053735 setmiterlimit
+[] 0 d 0 R 0 @G
+0.0000 1.0000 1.0000 0.0000  create_cmyk_color set_outline
+0 0.00992 0.00992 0.00000 @w
+317.32668 643.18450 m
+322.25244 641.61043 322.85027 637.30233 332.53795 633.91096 C
+343.07887 630.05783 356.02101 632.25780 357.60557 621.24945 C
+358.37717 616.70523 357.43209 613.56387 354.94384 611.58983 C
+350.96372 608.38299 344.29606 604.63814 339.28894 602.12948 C
+330.95055 597.62806 319.44444 591.37824 313.28192 603.48784 C
+311.34019 607.52693 312.13191 609.94460 311.36031 614.48882 C
+310.18989 621.90539 303.85389 626.32942 303.23027 631.83742 C
+302.57603 638.78485 308.50781 645.39439 317.32668 643.18450 C
+@c
+S
+
+@rax %Note: Object
+299.94066 609.63534 303.59906 613.31669 @E
+/$fm 0 def
+0 J 0 j 22.925585626053735 setmiterlimit
+[] 0 d 0 R 0 @G
+0.0000 0.0000 0.0000 1.0000  create_cmyk_color set_outline
+0 0.00992 0.00992 0.00000 @w
+301.76986 613.31669 m
+302.78013 613.31669 303.59906 612.49266 303.59906 611.47616 c
+303.59906 610.45937 302.78013 609.63534 301.76986 609.63534 c
+300.75959 609.63534 299.94066 610.45937 299.94066 611.47616 c
+299.94066 612.49266 300.75959 613.31669 301.76986 613.31669 c
+@c
+S
+
+@rax %Note: Object
+303.99024 653.38469 358.48545 699.80769 @E
+/$fm 0 def
+0 J 0 j 22.925585626053735 setmiterlimit
+[] 0 d 0 R 0 @G
+0.0000 1.0000 1.0000 0.0000  create_cmyk_color set_outline
+0 0.00992 0.00992 0.00000 @w
+327.16431 699.37313 m
+334.27162 698.32658 355.23099 688.45691 357.75553 680.82973 C
+360.10091 673.67877 356.41247 664.71704 352.08482 661.98302 C
+347.75717 659.24872 319.09861 650.46756 310.74973 654.36803 C
+304.44463 657.35263 302.62025 663.79465 304.98548 671.52756 C
+306.86031 678.52970 308.26517 683.84126 310.65619 690.37455 C
+313.20028 697.63124 317.84995 701.09235 327.16431 699.37313 C
+@c
+S
+
+ @gs spg @gr
+%%PageTrailer
+@rs
+@rs
+%%Trailer
+@EndSysCorelDict
+end
+%%DocumentSuppliedResources: procset wCorel21Dict 21.0 0
+%%EOF
