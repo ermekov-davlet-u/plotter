@@ -97,6 +97,42 @@ function circleToSmooth(points) {
   return out;
 }
 
+// ---------------- ROTATE 90° ----------------
+
+function getBounds(points) {
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+
+  for (const p of points) {
+    if (p.x < minX) minX = p.x;
+    if (p.y < minY) minY = p.y;
+    if (p.x > maxX) maxX = p.x;
+    if (p.y > maxY) maxY = p.y;
+  }
+
+  return { minX, minY, maxX, maxY };
+}
+
+// Поворот на 90° ПО ЧАСОВОЙ СТРЕЛКЕ
+function rotate90(points) {
+  const { minX, minY, maxX, maxY } = getBounds(points);
+
+  const cx = (minX + maxX) / 2;
+  const cy = (minY + maxY) / 2;
+
+  return points.map(p => {
+    const x = p.x - cx;
+    const y = p.y - cy;
+
+    return {
+      x: y + cx,
+      y: -x + cy
+    };
+  });
+}
+
 // ---------------- MAIN ----------------
 export function simplifyHPGL(text) {
   const items = parseHPGL(text);
@@ -118,6 +154,8 @@ export function simplifyHPGL(text) {
     if (isCircle(pts)) {
       pts = circleToSmooth(pts);
     }
+
+    pts = rotate90(pts);
 
     after.total += pts.length;
 
