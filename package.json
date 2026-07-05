@@ -15,6 +15,10 @@
     "axios": "^1.16.1",
     "cors": "^2.8.6",
     "express": "^5.2.1",
-    "serialport": "^13.0.0"
+    "flatten-js": "^1.0.1",
+    "multer": "^2.2.0",
+    "paper": "^0.12.18",
+    "serialport": "^13.0.0",
+    "simplify-js": "^1.2.4"
   }
 }
