@@ -1,180 +1,178 @@
-import simplify from "simplify-js";
+import paper from "paper";
 
-// ---------------- distance ----------------
-function dist(a, b) {
-  const dx = a.x - b.x;
-  const dy = a.y - b.y;
-  return Math.sqrt(dx * dx + dy * dy);
-}
+// Инициализируем Paper.js один раз в глобальной области видимости
+paper.setup(new paper.Size(10000, 10000));
 
-// ---------------- HPGL PARSER ----------------
+/**
+ * Парсит HPGL строку в массив путей с координатами точек
+ */
 export function parseHPGL(text) {
-  const tokens = text.split(";").map(t => t.trim()).filter(Boolean);
+  // Разделяем по точке с запятой, убираем пробелы и пустые команды
+  const commands = text.split(";").map(c => c.trim()).filter(Boolean);
 
-  const items = [];
-  let current = null;
+  const paths = [];
+  let currentPath = null;
 
-  for (const t of tokens) {
-    if (t.startsWith("PU")) {
-      const [x, y] = t.slice(2).split(",").map(Number);
+  for (const cmd of commands) {
+    if (cmd.startsWith("PU")) {
+      // Pen Up — начало нового контура
+      const coords = cmd.slice(2).split(",").map(Number);
+      if (coords.length >= 2) {
+        currentPath = {
+          start: { x: coords[0], y: coords[1] },
+          points: []
+        };
+        paths.push(currentPath);
+      }
+    } else if (cmd.startsWith("PD")) {
+      // Pen Down — добавление точек к текущему контуру
+      if (!currentPath) continue;
 
-      current = {
-        type: "path",
-        start: { x, y },
-        points: []
-      };
-
-      items.push(current);
-    }
-
-    else if (t.startsWith("PD")) {
-      const coords = t.slice(2).split(",");
-
+      const coords = cmd.slice(2).split(",").map(Number);
       for (let i = 0; i < coords.length; i += 2) {
-        const x = +coords[i];
-        const y = +coords[i + 1];
-
+        const x = coords[i];
+        const y = coords[i + 1];
         if (!isNaN(x) && !isNaN(y)) {
-          current?.points.push({ x, y });
+          currentPath.points.push({ x, y });
         }
       }
     }
   }
 
-  return items;
+  return paths;
 }
 
-// ---------------- CLEAN + SMOOTH ----------------
-function cleanPoints(points) {
-  if (points.length < 3) return points;
+/**
+ * Очищает, сглаживает контур через Paper.js и возвращает массив точек
+ */
+function cleanAndSmoothPath(item, tolerance = 2) {
+  const path = new paper.Path();
 
-  // 🔥 simplify-js убирает шум и вибрацию
-  const simplified = simplify(points, 1.8, true);
-
-  return simplified;
-}
-
-// ---------------- circle detect (простая и надёжная) ----------------
-function isCircle(points) {
-  if (points.length < 25) return false;
-
-  const start = points[0];
-  const end = points.at(-1);
-
-  const dx = start.x - end.x;
-  const dy = start.y - end.y;
-
-  const closed = Math.sqrt(dx * dx + dy * dy);
-
-  return closed < 5;
-}
-
-// ---------------- circle fix (без треугольников!) ----------------
-function circleToSmooth(points) {
-  const cx =
-    points.reduce((s, p) => s + p.x, 0) / points.length;
-
-  const cy =
-    points.reduce((s, p) => s + p.y, 0) / points.length;
-
-  const r =
-    points.reduce((s, p) => s + dist(p, { x: cx, y: cy }), 0) /
-    points.length;
-
-  const out = [];
-
-  const steps = 12; // 🔥 баланс плавности и стабильности
-
-  for (let i = 0; i <= steps; i++) {
-    const a = (i / steps) * Math.PI * 2;
-
-    out.push({
-      x: cx + Math.cos(a) * r,
-      y: cy + Math.sin(a) * r
-    });
+  // Добавляем стартовую точку и все последующие
+  path.add(new paper.Point(item.start.x, item.start.y));
+  for (const p of item.points) {
+    path.add(new paper.Point(p.x, p.y));
   }
 
-  return out;
+  // Проверяем на замкнутость (если первая и последняя точки совпадают или очень близки)
+  if (item.points.length > 0) {
+    const start = item.start;
+    const end = item.points[item.points.length - 1];
+    const dist = Math.hypot(start.x - end.x, start.y - end.y);
+    if (dist < 5) {
+      path.closed = true;
+    }
+  }
+
+  // Оптимизируем контур (убираем лишний шум)
+  // В Paper.js tolerance задается через аргумент (по умолчанию 2.5)
+  path.simplify(tolerance);
+
+  // Сглаживаем углы для плавного движения ножа плоттера
+  path.smooth({ type: "continuous" });
+
+  // Сохраняем результат в массив простых объектов координат
+  const smoothedPoints = path.segments.map(s => ({
+    x: s.point.x,
+    y: s.point.y
+  }));
+
+  // ВАЖНО: Удаляем объект из памяти Paper.js, чтобы избежать утечек
+  path.remove();
+
+  return smoothedPoints;
 }
 
-// ---------------- ROTATE 90° ----------------
+/**
+ * Вычисляет общий bounding box (границы) для всей детали целиком
+ */
+function getGlobalBounds(allPaths) {
+  let minX = Infinity, minY = Infinity;
+  let maxX = -Infinity, maxY = -Infinity;
 
-function getBounds(points) {
-  let minX = Infinity;
-  let minY = Infinity;
-  let maxX = -Infinity;
-  let maxY = -Infinity;
-
-  for (const p of points) {
-    if (p.x < minX) minX = p.x;
-    if (p.y < minY) minY = p.y;
-    if (p.x > maxX) maxX = p.x;
-    if (p.y > maxY) maxY = p.y;
+  for (const pts of allPaths) {
+    for (const p of pts) {
+      if (p.x < minX) minX = p.x;
+      if (p.y < minY) minY = p.y;
+      if (p.x > maxX) maxX = p.x;
+      if (p.y > maxY) maxY = p.y;
+    }
   }
 
   return { minX, minY, maxX, maxY };
 }
 
-// Поворот на 90° ПО ЧАСОВОЙ СТРЕЛКЕ
-function rotate90(points) {
-  const { minX, minY, maxX, maxY } = getBounds(points);
+/**
+ * Поворачивает ВСЕ контуры на 90° по часовой стрелке вокруг общего центра детали
+ */
+function rotateAllPaths90(allPaths) {
+  const { minX, minY, maxX, maxY } = getGlobalBounds(allPaths);
 
+  // Общий центр всей детали
   const cx = (minX + maxX) / 2;
   const cy = (minY + maxY) / 2;
 
-  return points.map(p => {
-    const x = p.x - cx;
-    const y = p.y - cy;
-
-    return {
-      x: y + cx,
-      y: -x + cy
-    };
-  });
+  return allPaths.map(pts =>
+    pts.map(p => {
+      const x = p.x - cx;
+      const y = p.y - cy;
+      return {
+        x: Math.round(y + cx),
+        y: Math.round(-x + cy)
+      };
+    })
+  );
 }
 
-// ---------------- MAIN ----------------
+/**
+ * Главная функция оптимизации HPGL
+ */
 export function simplifyHPGL(text) {
-  const items = parseHPGL(text);
+  const rawItems = parseHPGL(text);
 
-  let hpgl = "VS7;FS12;\n";
+  let totalBeforePoints = 0;
+  let processedPaths = [];
 
-  const before = { total: 0 };
-  const after = { total: 0 };
+  // 1. Очистка и сглаживание каждого контура по отдельности
+  for (const item of rawItems) {
+    const rawPtsCount = 1 + item.points.length;
+    totalBeforePoints += rawPtsCount;
 
-  for (const item of items) {
-    let pts = [item.start, ...item.points];
-
-    before.total += pts.length;
-
-    // 🔥 1. чистим шум
-    pts = cleanPoints(pts);
-
-    // 🔥 2. если круг — отдельная логика
-    if (isCircle(pts)) {
-      pts = circleToSmooth(pts);
-    }
-
-    pts = rotate90(pts);
-
-    after.total += pts.length;
-
-    // 🔥 3. HPGL output (ВАЖНО: пачками)
-    hpgl += `PU${Math.round(pts[0].x)},${Math.round(pts[0].y)};\n`;
-
-    for (let i = 1; i < pts.length; i += 8) {
-      const chunk = pts.slice(i, i + 8);
-
-      hpgl += "PD";
-      hpgl += chunk.map(p => `${Math.round(p.x)},${Math.round(p.y)}`).join(",");
-      hpgl += ";\n";
+    const smoothPts = cleanAndSmoothPath(item);
+    if (smoothPts.length > 0) {
+      processedPaths.push(smoothPts);
     }
   }
 
+  // 2. Поворот всей детали на 90° относительно ОБЩЕГО центра
+  if (processedPaths.length > 0) {
+    processedPaths = rotateAllPaths90(processedPaths);
+  }
+
+  // 3. Сборка нового HPGL файла с длинными пачками команд PD
+  let hpgl = "IN;VS7;FS30;\n";// Добавили инициализацию IN
+  let totalAfterPoints = 0;
+
+  for (const pts of processedPaths) {
+    totalAfterPoints += pts.length;
+
+    // Перемещение к началу контура
+    hpgl += `PU${pts[0].x},${pts[0].y};\n`;
+
+    if (pts.length > 1) {
+      // Собираем все остальные точки в одну длинную команду PD для плавности резки
+      const tailPoints = pts.slice(1).map(p => `${p.x},${p.y}`).join(",");
+      hpgl += `PD${tailPoints};\n`;
+    }
+  }
+
+  // Очищаем активный проект Paper.js, завершая работу с файлом
+  paper.project.clear();
+
   return {
     hpgl,
-    before,
-    after,
+    before: { total: totalBeforePoints },
+    after: { total: totalAfterPoints },
     fixed: true
   };
 }
