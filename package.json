@@ -16,7 +16,9 @@
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "flatten-js": "^1.0.1",
+    "fs": "^0.0.1-security",
     "multer": "^2.2.0",
+    "os": "^0.1.2",
     "paper": "^0.12.18",
     "serialport": "^13.0.0",
     "simplify-js": "^1.2.4"
